@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convexa AI Demo</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <div class="demo-shell">
+
+    <div class="demo-topbar">
+      <a href="../index.html" class="demo-back-btn" id="demoBackBtn">← Back</a>
+
+      <div class="demo-topbar-right">
+        <div class="demo-lang-switch">
+          <button class="demo-lang-btn active" data-lang="en">EN</button>
+          <button class="demo-lang-btn" data-lang="ar">AR</button>
+          <button class="demo-lang-btn" data-lang="tr">TR</button>
+        </div>
+
+        <div class="demo-topbar-badge" id="demoTopBadge">
+          Live WhatsApp Demo
+        </div>
+      </div>
+    </div>
+
+    <section class="demo-hero">
+      <div class="demo-hero-chip" id="demoHeroChip">
+        ⚡ Convexa AI Assistant
+      </div>
+
+      <h1 class="demo-hero-title" id="demoHeroTitle">
+        Watch how your clinic can reply, qualify, and turn chats into bookings automatically
+      </h1>
+
+      <p class="demo-hero-subtitle" id="demoHeroSubtitle">
+        This is a live interactive demo. The real version connects directly to your clinic’s WhatsApp number and handles patient conversations automatically.
+      </p>
+    </section>
+
+    <div class="demo-notice" id="demoNotice">
+      🚀 This is a live demo of the Convexa AI WhatsApp assistant. The real version connects directly to your clinic's WhatsApp and replies to patients automatically.
+    </div>
+
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="clinic-info">
+          <div class="clinic-avatar">🦷</div>
+
+          <div class="clinic-text">
+            <h3 id="clinicName">Elite Dental Clinic</h3>
+            <span id="clinicRole">WhatsApp Assistant</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <div class="chat-input-area">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+
+    <div class="demo-cta" id="demoCTA">
+      <p id="demoCtaText">
+        🔥 This is only a simple demo. The real system replies to every patient automatically and helps your clinic get more bookings every day.
+      </p>
+
+      <a
+        href="https://wa.me/31684957550"
+        target="_blank"
+        class="cta-btn"
+        id="demoCtaBtn"
+      >
+        Start on your WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

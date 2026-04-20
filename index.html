@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClinicBot | WhatsApp AI Booking Assistant</title>
+  <meta
+    name="description"
+    content="AI WhatsApp bot for medical, dental, and aesthetic clinics. Instantly reply, qualify patients, and turn chats into booked appointments."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow glow-1"></div>
+  <div class="page-glow glow-2"></div>
+
+  <nav class="navbar">
+    <a href="#" class="logo">ConveXa</a>
+
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+      </div>
+
+      <a
+        href="demo/index.html"
+        class="nav-cta demo-link"
+        data-i18n="navCta"
+      >
+        Try Demo Free
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero section">
+      <div class="hero-badge reveal">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span data-i18n="heroBadge">Built for clinics that want to reply first and book more</span>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="reveal" data-i18n="heroTitle">
+          If your reply is late, the patient will not wait — they will book somewhere else.
+        </h1>
+
+        <p class="hero-sub reveal" data-i18n="heroSub">
+          A smart WhatsApp system for clinics that replies instantly, answers repeated questions, and moves each conversation step by step until it becomes a real booking request — automatically.
+        </p>
+
+        <div class="hero-actions reveal">
+          <a
+            href="demo/index.html"
+            class="cta-primary demo-link"
+            data-i18n="heroPrimary"
+          >
+            Open Free Demo Now
+          </a>
+
+          <a
+            href="#demo"
+            class="cta-secondary"
+            data-i18n="heroSecondary"
+          >
+            See How Patients Book
+          </a>
+        </div>
+
+        <div class="hero-helper-wrap reveal">
+          <div class="hero-helper" data-i18n="heroHelper">
+            Instant free demo access — open it now and see how the bot can reply to patients and organize booking requests in seconds.
+          </div>
+        </div>
+
+        <div class="hero-proof reveal">
+          <div class="proof-item">
+            <strong>100+</strong>
+            <span data-i18n="heroProof1">Clinics using the system</span>
+          </div>
+          <div class="proof-item">
+            <strong>1,000+</strong>
+            <span data-i18n="heroProof2">Daily conversations handled</span>
+          </div>
+          <div class="proof-item">
+            <strong>30%</strong>
+            <span data-i18n="heroProof3">Average booking lift</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trusted section">
+      <p class="trusted-label reveal" data-i18n="trustedLabel">
+        Trusted by clinics across Europe & the Middle East
+      </p>
+
+      <div class="trusted-logos reveal">
+        <span>DentalPro</span>
+        <span>SkinLab</span>
+        <span>Nova Clinic</span>
+        <span>MedPrime</span>
+        <span>Beauté House</span>
+      </div>
+    </section>
+
+    <section class="stats section">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <h2>100+</h2>
+          <p data-i18n="stat1">Active clinic accounts</p>
+        </div>
+
+        <div class="stat-card reveal">
+          <h2>1,000+</h2>
+          <p data-i18n="stat2">Conversations handled daily</p>
+        </div>
+
+        <div class="stat-card reveal">
+          <h2>30%</h2>
+          <p data-i18n="stat3">Average increase in bookings</p>
+        </div>
+
+        <div class="stat-card reveal">
+          <h2>24/7</h2>
+          <p data-i18n="stat4">Instant responses without delays</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem section">
+      <div class="section-heading reveal">
+        <span class="section-kicker" data-i18n="problemKicker">The hidden leak</span>
+        <h2 data-i18n="problemTitle">
+          Messages pile up. Replies slow down. Patients disappear.
+        </h2>
+        <p data-i18n="problemSub">
+          In clinics, speed wins. A slow reply is not just a delay — it is a lost patient and a missed booking opportunity.
+        </p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon"><i class="fa-regular fa-clock"></i></div>
+          <h3 data-i18n="problemCard1Title">Slow response kills intent</h3>
+          <p data-i18n="problemCard1Text">
+            Patients usually book with the clinic that replies first — not always the clinic that is better.
+          </p>
+        </div>
+
+        <div class="problem-card reveal">
+          <div class="problem-icon"><i class="fa-regular fa-message"></i></div>
+          <h3 data-i18n="problemCard2Title">Front desk overload is expensive</h3>
+          <p data-i18n="problemCard2Text">
+            Repeating the same answers all day drains the team and delays real opportunities that should be converted faster.
+          </p>
+        </div>
+
+        <div class="problem-card reveal">
+          <div class="problem-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+          <h3 data-i18n="problemCard3Title">Missed chats become missed revenue</h3>
+          <p data-i18n="problemCard3Text">
+            Every ignored inquiry is not just a lost message. It is a lost booking, lost treatment, and lost long-term patient value.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="solution section">
+      <div class="section-heading reveal">
+        <span class="section-kicker" data-i18n="solutionKicker">The system</span>
+        <h2 data-i18n="solutionTitle">
+          A WhatsApp assistant designed to capture intent and turn conversations into appointments.
+        </h2>
+      </div>
+
+      <div class="solution-layout">
+        <div class="solution-flow reveal">
+          <div class="flow-window">
+            <div class="flow-top">
+              <span></span><span></span><span></span>
+            </div>
+
+            <div class="chat-flow">
+              <div class="chat-bubble patient" data-i18n="flow1">
+                Hi, do you have an appointment this week for teeth whitening?
+              </div>
+
+              <div class="chat-bubble bot" data-i18n="flow2">
+                Yes — we have availability on Tuesday and Thursday. Which day works best for you?
+              </div>
+
+              <div class="chat-bubble patient" data-i18n="flow3">
+                Thursday after 5 PM.
+              </div>
+
+              <div class="chat-bubble bot" data-i18n="flow4">
+                Perfect. I can place your request for 5:30 PM. May I have your full name and phone number?
+              </div>
+
+              <div class="chat-status" data-i18n="flowStatus">
+                Appointment request created automatically
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="solution-points">
+          <div class="solution-point reveal">
+            <i class="fa-solid fa-bolt"></i>
+            <div>
+              <h3 data-i18n="solutionPoint1Title">Replies instantly</h3>
+              <p data-i18n="solutionPoint1Text">
+                The bot responds the moment a patient sends a message — even outside business hours.
+              </p>
+            </div>
+          </div>
+
+          <div class="solution-point reveal">
+            <i class="fa-solid fa-calendar-check"></i>
+            <div>
+              <h3 data-i18n="solutionPoint2Title">Moves patients toward booking</h3>
+              <p data-i18n="solutionPoint2Text">
+                It guides the conversation, gathers key details, and pushes the patient toward a real appointment request.
+              </p>
+            </div>
+          </div>
+
+          <div class="solution-point reveal">
+            <i class="fa-solid fa-users-gear"></i>
+            <div>
+              <h3 data-i18n="solutionPoint3Title">Reduces pressure on the team</h3>
+              <p data-i18n="solutionPoint3Text">
+                Your reception team stops repeating basic information and focuses on higher-value work.
+              </p>
+            </div>
+          </div>
+
+          <div class="solution-point reveal">
+            <i class="fa-solid fa-globe"></i>
+            <div>
+              <h3 data-i18n="solutionPoint4Title">Works in multiple languages</h3>
+              <p data-i18n="solutionPoint4Text">
+                Serve Arabic, English, and Turkish speaking patients from the same clinic number.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features section">
+      <div class="section-heading reveal">
+        <span class="section-kicker" data-i18n="featuresKicker">Features</span>
+        <h2 data-i18n="featuresTitle">
+          Everything a clinic needs to stop losing leads on WhatsApp.
+        </h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-brain"></i>
+          <h3 data-i18n="feature1Title">Smart replies</h3>
+          <p data-i18n="feature1Text">
+            Answers FAQs, service questions, pricing-related inquiries, and patient intent instantly.
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-calendar-days"></i>
+          <h3 data-i18n="feature2Title">Appointment booking flow</h3>
+          <p data-i18n="feature2Text">
+            Turns incoming questions into structured booking requests with clear next steps.
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <i class="fa-brands fa-whatsapp"></i>
+          <h3 data-i18n="feature3Title">Native WhatsApp experience</h3>
+          <p data-i18n="feature3Text">
+            The whole flow feels natural because it works where patients already contact your clinic.
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-language"></i>
+          <h3 data-i18n="feature4Title">Language support</h3>
+          <p data-i18n="feature4Text">
+            Handle Arabic, English, and Turkish patient conversations from one number.
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-moon"></i>
+          <h3 data-i18n="feature5Title">24/7 availability</h3>
+          <p data-i18n="feature5Text">
+            Capture demand after hours, on weekends, and during reception overload.
+          </p>
+        </div>
+
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-chart-line"></i>
+          <h3 data-i18n="feature6Title">More booked patients</h3>
+          <p data-i18n="feature6Text">
+            Faster replies create more conversations, more intent captured, and more bookings completed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials section">
+      <div class="section-heading reveal">
+        <span class="section-kicker" data-i18n="testimonialsKicker">Proof</span>
+        <h2 data-i18n="testimonialsTitle">
+          Trusted by clinics that treat speed like a revenue channel, not an afterthought.
+        </h2>
+      </div>
+
+      <div class="testimonial-summary reveal">
+        <div class="summary-chip">
+          <strong>100+</strong>
+          <span data-i18n="summary1">Companies using the system</span>
+        </div>
+        <div class="summary-chip">
+          <strong>4.9/5</strong>
+          <span data-i18n="summary2">Average satisfaction score</span>
+        </div>
+        <div class="summary-chip">
+          <strong>1,000+</strong>
+          <span data-i18n="summary3">Patient conversations per day</span>
+        </div>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <div class="quote-top">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <p data-i18n="testimonial1">
+            We used to lose inquiries every evening. Now the bot handles them instantly, and our team starts the day with qualified booking requests instead of unanswered chats.
+          </p>
+          <div class="review-stars">★★★★★</div>
+          <span data-i18n="testimonial1Author">Operations Manager — Dental Clinic</span>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="quote-top">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <p data-i18n="testimonial2">
+            The biggest shift was speed. Patients ask, the system replies, and the booking conversation keeps moving without waiting for reception.
+          </p>
+          <div class="review-stars">★★★★★</div>
+          <span data-i18n="testimonial2Author">Owner — Aesthetic Clinic</span>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="quote-top">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <p data-i18n="testimonial3">
+            It feels less like a chatbot and more like a disciplined digital front desk that never lets a patient wait too long.
+          </p>
+          <div class="review-stars">★★★★★</div>
+          <span data-i18n="testimonial3Author">Director — Medical Center</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo section" id="demo">
+      <div class="demo-card reveal">
+        <div class="demo-text">
+          <span class="section-kicker" data-i18n="demoKicker">Free Demo</span>
+          <h2 data-i18n="demoTitle">Try the bot free for 3 days.</h2>
+          <p data-i18n="demoSub">
+            Open the live demo instantly and see how the bot can reply to patients, qualify requests, and move conversations toward bookings.
+          </p>
+          <p class="demo-note" data-i18n="demoNote">
+            Free direct access — no sales call, no waiting, and no setup needed before you see the experience.
+          </p>
+        </div>
+
+        <a
+          href="demo/index.html"
+          class="cta-primary demo-btn demo-link"
+          data-i18n="demoBtn"
+        >
+          Open Free Demo
+        </a>
+      </div>
+    </section>
+
+    <section class="pricing section">
+      <div class="section-heading reveal">
+        <span class="section-kicker" data-i18n="pricingKicker">Pricing</span>
+        <h2 data-i18n="pricingTitle">
+          This is not a cheap plugin — it is a system built to bring patients in and turn response speed into booked revenue.
+        </h2>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-top">
+            <h3 data-i18n="pricing1Title">Setup Fee</h3>
+            <div class="price">$499</div>
+          </div>
+          <p data-i18n="pricing1Text">
+            Initial setup, conversation logic, clinic flow customization, and launch support.
+          </p>
+        </div>
+
+        <div class="pricing-card featured reveal">
+          <div class="pricing-badge" data-i18n="pricingBadge">Most Popular</div>
+          <div class="pricing-top">
+            <h3 data-i18n="pricing2Title">Monthly Plan</h3>
+            <div class="price">$149<span>/mo</span></div>
+          </div>
+          <p data-i18n="pricing2Text">
+            Ongoing bot access, WhatsApp automation, updates, and performance support.
+          </p>
+        </div>
+
+        <div class="pricing-card reveal">
+          <div class="pricing-top">
+            <h3 data-i18n="pricing3Title">Full Ownership</h3>
+            <div class="price">$2,900</div>
+          </div>
+          <p data-i18n="pricing3Text">
+            Buy the full customized system for your clinic with a higher one-time investment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta section">
+      <div class="final-cta-card reveal">
+        <span class="section-kicker" data-i18n="finalKicker">Final step</span>
+        <h2 data-i18n="finalTitle">
+          Patients do not wait long — the clinic that replies first is usually the clinic that books first.
+        </h2>
+        <p data-i18n="finalSub">
+          If WhatsApp already brings inquiries to your clinic, then this system is not optional. It is operational infrastructure for growth.
+        </p>
+
+        <a
+          href="#"
+          target="_blank"
+          class="cta-primary wa-link"
+          data-i18n="finalBtn"
+          data-wa-message="final"
+        >
+          Talk on WhatsApp Now
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <a
+    href="#"
+    class="whatsapp-float wa-link"
+    target="_blank"
+    aria-label="WhatsApp"
+    data-wa-message="float"
+  >
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js"></script>
+
+  <div class="cursor"></div>
+  <div class="cursor-blur"></div>
+  <div class="particles"></div>
+</body>
+</html>
