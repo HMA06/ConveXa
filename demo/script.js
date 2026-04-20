@@ -17,22 +17,23 @@ const demoLangButtons = document.querySelectorAll(".demo-lang-btn");
 
 const uiTranslations = {
   en: {
-    title: "Convexa AI Demo",
+    title: "ConveXa AI Demo",
     back: "← Back",
-    topBadge: "Live WhatsApp Demo",
+    topBadge: "Interactive Demo",
     heroChip: "⚡ ConveXa AI Assistant",
-    heroTitle: "Watch how your clinic can reply, qualify, and turn chats into bookings automatically",
+    heroTitle:
+      "See how a clinic can respond, qualify demand, and collect booking details inside a WhatsApp-style flow",
     heroSubtitle:
-      "This is a live interactive demo. The real version connects directly to your clinic’s WhatsApp number and handles patient conversations automatically.",
+      "This is a simplified interactive demo. The live version is connected directly to your clinic workflow, services, and patient communication flow.",
     notice:
-      "🚀 This is a live demo of the Convexa AI WhatsApp assistant. The real version connects directly to your clinic's WhatsApp and replies to patients automatically.",
+      "🚀 This demo is intentionally simplified. The live version runs on your clinic workflow and can be adapted to your booking process, services, and languages.",
     clinicName: "Elite Dental Clinic",
     clinicRole: "WhatsApp Assistant",
     inputPlaceholder: "Type your message...",
     send: "Send",
     ctaText:
-      "🔥 This is only a simple demo. The real system replies to every patient automatically, organizes conversations, and helps your clinic get more bookings every day.",
-    ctaButton: "Start on your WhatsApp",
+      "This is a simplified experience. The live version can run on your clinic’s number, be adapted to your workflow, and help your team collect booking requests more clearly.",
+    ctaButton: "Start your clinic setup on WhatsApp",
     options: {
       book: "1- Book an appointment",
       services: "2- Ask about services",
@@ -41,22 +42,23 @@ const uiTranslations = {
   },
 
   ar: {
-    title: "عرض Convexa AI",
+    title: "عرض ConveXa AI",
     back: "→ رجوع",
-    topBadge: "تجربة واتساب مباشرة",
+    topBadge: "تجربة تفاعلية",
     heroChip: "⚡ مساعد ConveXa AI",
-    heroTitle: "شاهد كيف يمكن لعيادتك أن ترد على المرضى، تؤهلهم، وتحول المحادثات إلى حجوزات تلقائيًا",
+    heroTitle:
+      "شاهد كيف يمكن للعيادة أن ترد على المرضى، تؤهل الطلب، وتجمع تفاصيل الحجز داخل تجربة شبيهة بواتساب",
     heroSubtitle:
-      "هذه تجربة تفاعلية مباشرة. النسخة الحقيقية يتم ربطها مباشرة برقم واتساب العيادة وتتعامل مع محادثات المرضى تلقائيًا.",
+      "هذه تجربة تفاعلية مبسطة. النسخة الفعلية يتم ربطها مباشرة بسير العمل داخل عيادتك والخدمات وطريقة التواصل مع المرضى.",
     notice:
-      "🚀 هذه تجربة مباشرة لمساعد واتساب من ConveXa AI. النسخة الحقيقية يتم ربطها مباشرة برقم واتساب العيادة وترد على المرضى تلقائيًا.",
+      "🚀 هذه النسخة مجرد نموذج مبسط. النسخة الحقيقية تعمل على سير العمل داخل عيادتك ويمكن تخصيصها حسب الحجوزات والخدمات واللغات.",
     clinicName: "Elite Dental Clinic",
     clinicRole: "مساعد واتساب",
     inputPlaceholder: "اكتب رسالتك...",
     send: "إرسال",
     ctaText:
-      "🔥 هذا مجرد نموذج بسيط. النسخة الحقيقية ترد على كل المرضى تلقائيًا، وتنظم المحادثات، وتساعد عيادتك على زيادة الحجوزات يوميًا.",
-    ctaButton: "ابدأ على رقمك الآن",
+      "هذه تجربة مبسطة. النسخة الحقيقية يمكن تشغيلها على رقم عيادتك، وتخصيصها حسب سير العمل، ومساعدة الفريق على جمع طلبات الحجز بشكل أوضح.",
+    ctaButton: "ابدأ إعداد عيادتك على واتساب",
     options: {
       book: "1- حجز موعد",
       services: "2- الاستفسار عن الخدمات",
@@ -65,22 +67,23 @@ const uiTranslations = {
   },
 
   tr: {
-    title: "Convexa AI Demo",
+    title: "ConveXa AI Demo",
     back: "← Geri",
-    topBadge: "Canlı WhatsApp Demo",
+    topBadge: "Etkileşimli Demo",
     heroChip: "⚡ ConveXa AI Asistanı",
-    heroTitle: "Kliniğinizin otomatik olarak yanıt verip, hastaları yönlendirip, sohbetleri rezervasyona nasıl dönüştürebildiğini görün",
+    heroTitle:
+      "Bir kliniğin WhatsApp benzeri bir akışta nasıl yanıt verebildiğini, talebi yönlendirdiğini ve randevu detaylarını topladığını görün",
     heroSubtitle:
-      "Bu canlı etkileşimli bir demodur. Gerçek sürüm doğrudan kliniğinizin WhatsApp numarasına bağlanır ve hasta konuşmalarını otomatik olarak yönetir.",
+      "Bu basitleştirilmiş etkileşimli bir demodur. Canlı sürüm doğrudan kliniğinizin iş akışına, hizmetlerine ve hasta iletişim yapısına bağlanır.",
     notice:
-      "🚀 Bu, ConveXa AI WhatsApp asistanının canlı demosudur. Gerçek sürüm doğrudan kliniğinizin WhatsApp numarasına bağlanır ve hastalara otomatik olarak yanıt verir.",
+      "🚀 Bu demo bilerek sadeleştirilmiştir. Gerçek sürüm kliniğinizin iş akışında çalışır ve rezervasyon sürecinize, hizmetlerinize ve dillerinize göre uyarlanabilir.",
     clinicName: "Elite Dental Clinic",
     clinicRole: "WhatsApp Asistanı",
     inputPlaceholder: "Mesajınızı yazın...",
     send: "Gönder",
     ctaText:
-      "🔥 Bu sadece basit bir demo. Gerçek sistem tüm hastalara otomatik yanıt verir, konuşmaları düzenler ve kliniğinizin her gün daha fazla randevu almasına yardımcı olur.",
-    ctaButton: "Kendi Numaranızda Başlatın",
+      "Bu sadeleştirilmiş bir deneyimdir. Gerçek sürüm kliniğinizin numarasında çalışabilir, iş akışınıza göre uyarlanabilir ve ekibinizin rezervasyon taleplerini daha düzenli toplamasına yardımcı olabilir.",
+    ctaButton: "Kliniğinizin kurulumunu WhatsApp'ta başlatın",
     options: {
       book: "1- Randevu al",
       services: "2- Hizmetleri sor",
@@ -98,34 +101,35 @@ const botTexts = {
       "Nice to meet you {name} 😊\nWhat service would you like?\n(Cleaning - Braces - Whitening)",
     askDay: "Which day works best for you?",
     askTime: "Perfect 👍 What time do you prefer?",
-    askPhone: "Great. Please send your phone number so the clinic can confirm your request.",
+    askPhone:
+      "Great. Please send your phone number so the clinic can confirm your request.",
     confirm:
       "Got it 👍\nName: {name}\nService: {service}\nDay: {day}\nTime: {time}\nPhone: {phone}\nPlease confirm by sending: yes",
     done:
-      "Your request has been recorded ✅\nOur team will contact you soon to confirm the appointment.",
+      "Your request has been recorded ✅\nIn the live version, your clinic team can receive this as a structured booking request and continue the follow-up.",
     retryConfirm: "Please type yes to confirm your request.",
     services:
-      "We currently offer:\n• Cleaning\n• Braces\n• Whitening\nWe also help patients with quick information, appointment requests, and follow-up messages.",
+      "We currently offer:\n• Cleaning\n• Braces\n• Whitening\nThe live version can also guide patients through common questions and direct them toward the right next step.",
     prices:
-      "Prices depend on the case and treatment type.\nFor example, cleaning, whitening, and braces each have different pricing.\nIf you'd like, I can help you book a consultation request and the clinic can contact you with details.",
+      "Pricing depends on the case and treatment type.\nFor example, cleaning, whitening, and braces each have different pricing.\nIf you'd like, I can help you create a consultation or booking request.",
     fallback:
       "I can help with appointments, services, prices, clinic hours, location, consultation questions, and treatment basics.\nYou can also type 1 to start booking.",
     bookNudge:
-      "If you'd like, we can continue right now and create your appointment request in less than a minute.",
+      "If you'd like, we can continue now and create a sample booking request in less than a minute.",
     hours:
-      "The clinic is available during regular working hours, and the assistant can still collect requests automatically outside working hours.",
+      "The clinic can handle requests during working hours, and the assistant can still capture patient inquiries outside business hours.",
     location:
-      "The clinic location and arrival details are usually shared with the patient during confirmation.\nIf you'd like, I can continue with a booking request now.",
+      "Location details are typically shared during the confirmation step.\nIf you want, I can continue with a booking request now.",
     consultation:
-      "Yes, consultation requests can be arranged first, especially if you want to understand the treatment plan before booking.",
+      "Yes, a consultation request can be collected first, especially when the patient wants to understand the treatment plan before confirming a booking.",
     pain:
-      "That depends on the treatment, but clinics usually explain each step clearly and help the patient choose the most suitable option.",
+      "That depends on the treatment, but the clinic usually explains each step and helps the patient understand the suitable option.",
     whitening:
-      "Teeth whitening is one of the common requested services.\nThe exact result depends on the case, and the clinic usually confirms the suitable option after evaluation.",
+      "Teeth whitening is one of the common requested services.\nThe suitable approach depends on the case and is usually confirmed after evaluation.",
     braces:
-      "Braces options depend on the dental case and examination.\nThe clinic usually reviews the situation first, then recommends the most suitable plan.",
+      "Braces options depend on the dental case and examination.\nThe clinic usually reviews the situation first, then recommends a suitable plan.",
     cleaning:
-      "Cleaning is one of the most common visits and is often requested as a first step before other cosmetic treatments."
+      "Cleaning is one of the most common requested services and is often the first step before other cosmetic treatments."
   },
 
   ar: {
@@ -136,34 +140,35 @@ const botTexts = {
       "تشرفنا فيك {name} 😊\nما الخدمة التي ترغب بها؟\n(تنظيف - تقويم - تبييض)",
     askDay: "أي يوم يناسبك؟",
     askTime: "ممتاز 👍 ما الوقت المناسب لك؟",
-    askPhone: "رائع. أرسل رقم هاتفك ليتمكن فريق العيادة من تأكيد الطلب معك.",
+    askPhone:
+      "رائع. أرسل رقم هاتفك ليتمكن فريق العيادة من تأكيد الطلب معك.",
     confirm:
       "تم 👍\nالاسم: {name}\nالخدمة: {service}\nاليوم: {day}\nالوقت: {time}\nرقم الهاتف: {phone}\nللتأكيد أرسل: نعم",
     done:
-      "تم تسجيل طلبك ✅\nسيتم التواصل معك قريبًا لتأكيد الموعد.",
+      "تم تسجيل طلبك ✅\nفي النسخة الحقيقية يمكن لفريق العيادة استلام هذا الطلب بشكل منظم ومتابعته مباشرة.",
     retryConfirm: "للتأكيد أرسل كلمة: نعم",
     services:
-      "الخدمات المتوفرة حاليًا:\n• تنظيف\n• تقويم\n• تبييض\nكما يساعد النظام في الرد على الاستفسارات السريعة، وتنظيم طلبات الحجز، ومتابعة المحادثات.",
+      "الخدمات المتوفرة حاليًا:\n• تنظيف\n• تقويم\n• تبييض\nكما يمكن للنسخة الحقيقية توجيه المرضى في الأسئلة الشائعة ونقلهم إلى الخطوة المناسبة.",
     prices:
-      "الأسعار تختلف حسب الحالة ونوع الخدمة المطلوبة.\nمثلًا أسعار التنظيف تختلف عن التبييض أو التقويم.\nإذا رغبت، أستطيع مساعدتك في إرسال طلب استشارة لتقوم العيادة بالتواصل معك بالتفاصيل.",
+      "الأسعار تختلف حسب الحالة ونوع الخدمة المطلوبة.\nمثلًا أسعار التنظيف تختلف عن التبييض أو التقويم.\nإذا رغبت، أستطيع مساعدتك في إنشاء طلب استشارة أو حجز.",
     fallback:
       "أستطيع مساعدتك في الحجز، الخدمات، الأسعار، أوقات العمل، الموقع، الاستشارة، والأسئلة الأساسية عن العلاج.\nويمكنك أيضًا كتابة الرقم 1 للبدء بالحجز.",
     bookNudge:
-      "إذا رغبت، يمكننا الآن متابعة طلب الحجز خلال أقل من دقيقة.",
+      "إذا رغبت، يمكننا الآن إكمال طلب حجز تجريبي خلال أقل من دقيقة.",
     hours:
-      "العيادة تعمل ضمن أوقات الدوام المعتادة، بينما يستطيع المساعد استقبال الطلبات وتنظيمها تلقائيًا حتى خارج أوقات العمل.",
+      "يمكن للعيادة التعامل مع الطلبات خلال أوقات الدوام، بينما يستطيع المساعد استقبال استفسارات المرضى أيضًا خارج أوقات العمل.",
     location:
-      "عادة يتم إرسال تفاصيل الموقع والوصول للمريض أثناء تأكيد الموعد.\nوإذا رغبت، يمكنني الآن متابعة طلب الحجز مباشرة.",
+      "عادة يتم إرسال تفاصيل الموقع أثناء مرحلة التأكيد.\nإذا رغبت، يمكنني الآن متابعة طلب الحجز.",
     consultation:
-      "نعم، يمكن طلب استشارة أولية أولًا، خاصة إذا كنت تريد معرفة الخطة المناسبة قبل تثبيت الموعد.",
+      "نعم، يمكن جمع طلب استشارة أولية أولًا، خاصة إذا كان المريض يريد فهم الخطة العلاجية قبل تثبيت الموعد.",
     pain:
-      "ذلك يعتمد على نوع الخدمة، لكن عادة تقوم العيادة بشرح الخطوات للمريض واختيار الخيار الأنسب له.",
+      "ذلك يعتمد على نوع العلاج، لكن العيادة عادة تشرح كل خطوة وتساعد المريض على فهم الخيار المناسب.",
     whitening:
-      "تبييض الأسنان من أكثر الخدمات المطلوبة.\nوالنتيجة المناسبة تختلف حسب الحالة، لذلك تؤكد العيادة الخيار المناسب بعد التقييم.",
+      "تبييض الأسنان من أكثر الخدمات المطلوبة.\nوالخيار المناسب يتحدد حسب الحالة وغالبًا يتم تأكيده بعد التقييم.",
     braces:
-      "خيارات التقويم تعتمد على حالة الأسنان بعد المعاينة.\nوفي العادة تقوم العيادة بمراجعة الحالة ثم اقتراح الخطة الأنسب.",
+      "خيارات التقويم تعتمد على حالة الأسنان بعد الفحص.\nعادة تراجع العيادة الحالة أولًا ثم تقترح الخطة المناسبة.",
     cleaning:
-      "تنظيف الأسنان من أكثر الخدمات شيوعًا، وكثير من المرضى يبدؤون به قبل الإجراءات التجميلية الأخرى."
+      "تنظيف الأسنان من أكثر الخدمات المطلوبة، وغالبًا يكون خطوة أولى قبل بعض الإجراءات التجميلية."
   },
 
   tr: {
@@ -174,34 +179,35 @@ const botTexts = {
       "Memnun olduk {name} 😊\nHangi hizmeti istiyorsunuz?\n(Temizlik - Diş teli - Beyazlatma)",
     askDay: "Hangi gün size uygundur?",
     askTime: "Harika 👍 Hangi saat sizin için uygun?",
-    askPhone: "Harika. Lütfen telefon numaranızı gönderin, böylece klinik talebinizi teyit edebilsin.",
+    askPhone:
+      "Harika. Lütfen telefon numaranızı gönderin, böylece klinik talebinizi teyit edebilsin.",
     confirm:
       "Tamam 👍\nİsim: {name}\nHizmet: {service}\nGün: {day}\nSaat: {time}\nTelefon: {phone}\nOnaylamak için şunu yazın: evet",
     done:
-      "Talebiniz kaydedildi ✅\nRandevuyu onaylamak için ekibimiz kısa süre içinde sizinle iletişime geçecek.",
+      "Talebiniz kaydedildi ✅\nCanlı sürümde klinik ekibi bunu yapılandırılmış bir rezervasyon talebi olarak alabilir ve devamını yönetebilir.",
     retryConfirm: "Onaylamak için lütfen şunu yazın: evet",
     services:
-      "Şu anda sunduğumuz hizmetler:\n• Temizlik\n• Diş teli\n• Beyazlatma\nSistem ayrıca hızlı soruları yanıtlamaya, randevu taleplerini toplamaya ve konuşmaları takip etmeye yardımcı olur.",
+      "Şu anda sunduğumuz hizmetler:\n• Temizlik\n• Diş teli\n• Beyazlatma\nCanlı sürüm ayrıca hastaları sık sorulan sorularda yönlendirebilir ve uygun sonraki adıma taşıyabilir.",
     prices:
-      "Fiyatlar vakaya ve istenen tedaviye göre değişir.\nÖrneğin temizlik, beyazlatma ve diş teli için ücretler farklıdır.\nİsterseniz bir danışma talebi oluşturmanıza yardımcı olabilirim, klinik size detaylarla dönüş yapar.",
+      "Fiyatlar vakaya ve tedavi türüne göre değişir.\nÖrneğin temizlik, beyazlatma ve diş teli için ücretler farklıdır.\nİsterseniz bir danışma veya rezervasyon talebi oluşturmanıza yardımcı olabilirim.",
     fallback:
-      "Randevu, hizmetler, fiyatlar, çalışma saatleri, konum, danışma ve temel tedavi sorularında yardımcı olabilirim.\nİsterseniz 1 yazarak hemen randevu sürecini başlatabilirsiniz.",
+      "Randevu, hizmetler, fiyatlar, çalışma saatleri, konum, danışma ve temel tedavi sorularında yardımcı olabilirim.\nİsterseniz 1 yazarak rezervasyon sürecini başlatabilirsiniz.",
     bookNudge:
-      "İsterseniz şimdi devam edip bir dakikadan kısa sürede randevu talebinizi oluşturabiliriz.",
+      "İsterseniz şimdi devam edip bir dakikadan kısa sürede örnek bir rezervasyon talebi oluşturabiliriz.",
     hours:
-      "Klinik normal çalışma saatlerinde hizmet verir, ancak asistan çalışma saatleri dışında da talepleri otomatik olarak toplayabilir.",
+      "Klinik çalışma saatlerinde talepleri yönetebilir, asistan ise mesai dışında da hasta isteklerini toplamaya devam edebilir.",
     location:
-      "Konum ve ulaşım detayları genelde randevu onayı sırasında hasta ile paylaşılır.\nİsterseniz şimdi rezervasyon talebiyle devam edebilirim.",
+      "Konum detayları genelde onay aşamasında paylaşılır.\nİsterseniz şimdi rezervasyon talebiyle devam edebilirim.",
     consultation:
-      "Evet, özellikle tedavi planını anlamak istiyorsanız önce danışma talebi oluşturulabilir.",
+      "Evet, özellikle hasta tedavi planını anlamak istiyorsa önce danışma talebi toplanabilir.",
     pain:
-      "Bu tedaviye göre değişir, ancak klinik genelde her adımı açıklayarak hasta için en uygun seçeneği belirler.",
+      "Bu tedaviye göre değişir, ancak klinik genelde her adımı açıklar ve hasta için uygun seçeneği anlamasına yardımcı olur.",
     whitening:
-      "Diş beyazlatma en çok talep edilen hizmetlerden biridir.\nUygun sonuç hastaya göre değişir ve klinik değerlendirme sonrası en uygun seçeneği belirtir.",
+      "Diş beyazlatma sık talep edilen hizmetlerden biridir.\nUygun yöntem vakaya göre değişir ve genelde değerlendirme sonrası netleşir.",
     braces:
-      "Diş teli seçenekleri diş yapısına ve muayene sonucuna göre belirlenir.\nKlinik önce durumu değerlendirir, sonra en uygun planı önerir.",
+      "Diş teli seçenekleri diş yapısına ve muayene sonucuna göre değişir.\nKlinik önce durumu inceler, sonra uygun planı önerir.",
     cleaning:
-      "Temizlik en yaygın ziyaretlerden biridir ve birçok hasta estetik işlemlerden önce bunu tercih eder."
+      "Temizlik en sık talep edilen hizmetlerden biridir ve çoğu zaman diğer estetik işlemlerden önce tercih edilir."
   }
 };
 
@@ -224,11 +230,15 @@ function detectMessageLanguage(text) {
 
   const turkishChars = /[çğıöşüÇĞİÖŞÜ]/.test(value);
   const turkishWords =
-    /\b(merhaba|randevu|hizmet|evet|tamam|bugün|yarın|diş|temizlik|fiyat)\b/i.test(value);
+    /\b(merhaba|randevu|hizmet|evet|tamam|bugün|yarın|diş|temizlik|fiyat)\b/i.test(
+      value
+    );
   if (turkishChars || turkishWords) return "tr";
 
   const englishWords =
-    /\b(hello|hi|book|appointment|service|services|price|prices|yes|clinic|cleaning|braces|whitening)\b/i.test(value);
+    /\b(hello|hi|book|appointment|service|services|price|prices|yes|clinic|cleaning|braces|whitening)\b/i.test(
+      value
+    );
   if (englishWords) return "en";
 
   return null;
@@ -444,33 +454,59 @@ function isPricesIntent(text) {
 }
 
 function isConfirmIntent(text) {
-  return includesAny(text, [
-    "yes",
-    "نعم",
-    "أجل",
-    "اجل",
-    "اي",
-    "evet",
-    "tamam"
-  ]);
+  return includesAny(text, ["yes", "نعم", "أجل", "اجل", "اي", "evet", "tamam"]);
 }
 
 function getFAQReply(text) {
   const bot = botTexts[currentLang] || botTexts.en;
 
-  if (includesAny(text, ["hours", "working hours", "open", "دوام", "ساعات", "متى", "çalışma", "saat"])) {
+  if (
+    includesAny(text, [
+      "hours",
+      "working hours",
+      "open",
+      "دوام",
+      "ساعات",
+      "متى",
+      "çalışma",
+      "saat"
+    ])
+  ) {
     return bot.hours;
   }
 
-  if (includesAny(text, ["location", "address", "where", "عنوان", "موقع", "وين", "adres", "konum", "nerede"])) {
+  if (
+    includesAny(text, [
+      "location",
+      "address",
+      "where",
+      "عنوان",
+      "موقع",
+      "وين",
+      "adres",
+      "konum",
+      "nerede"
+    ])
+  ) {
     return bot.location;
   }
 
-  if (includesAny(text, ["consultation", "consult", "استشارة", "استشاره", "danışma", "danisma"])) {
+  if (
+    includesAny(text, [
+      "consultation",
+      "consult",
+      "استشارة",
+      "استشاره",
+      "danışma",
+      "danisma"
+    ])
+  ) {
     return bot.consultation;
   }
 
-  if (includesAny(text, ["pain", "hurt", "وجع", "ألم", "الم", "acı", "agri", "ağrı"])) {
+  if (
+    includesAny(text, ["pain", "hurt", "وجع", "ألم", "الم", "acı", "agri", "ağrı"])
+  ) {
     return bot.pain;
   }
 
@@ -504,9 +540,13 @@ function handleSmartGeneralQuestion(text) {
   if (faq) {
     botReply(faq, () => {
       setTimeout(() => {
-        botReply(bot.bookNudge, () => {
-          showQuickReplies();
-        }, 850);
+        botReply(
+          bot.bookNudge,
+          () => {
+            showQuickReplies();
+          },
+          850
+        );
       }, 250);
     });
     return true;
@@ -537,9 +577,13 @@ function handleUserMessage(rawText) {
       state = "general_mode";
       botReply(bot.services, () => {
         setTimeout(() => {
-          botReply(bot.bookNudge, () => {
-            showQuickReplies();
-          }, 850);
+          botReply(
+            bot.bookNudge,
+            () => {
+              showQuickReplies();
+            },
+            850
+          );
         }, 250);
       });
       return;
@@ -549,9 +593,13 @@ function handleUserMessage(rawText) {
       state = "general_mode";
       botReply(bot.prices, () => {
         setTimeout(() => {
-          botReply(bot.bookNudge, () => {
-            showQuickReplies();
-          }, 850);
+          botReply(
+            bot.bookNudge,
+            () => {
+              showQuickReplies();
+            },
+            850
+          );
         }, 250);
       });
       return;
