@@ -38,7 +38,13 @@ const uiTranslations = {
       book: "1- Book an appointment",
       services: "2- Ask about services",
       prices: "3- Ask about prices"
-    }
+    },
+    repeatedServices:
+      "I already shared the main services above. If you want, tell me which service you want to ask about and I’ll continue without repeating the menu.",
+    repeatedPrices:
+      "I already shared the pricing note above. If you want, tell me which service you want pricing for and I’ll continue without repeating the menu.",
+    repeatedGeneric:
+      "I can continue from here without repeating everything. You can ask about services, prices, clinic details, or type 1 to start booking."
   },
 
   ar: {
@@ -63,7 +69,13 @@ const uiTranslations = {
       book: "1- حجز موعد",
       services: "2- الاستفسار عن الخدمات",
       prices: "3- الاستفسار عن الأسعار"
-    }
+    },
+    repeatedServices:
+      "تم توضيح قسم الخدمات بالفعل. اكتب فقط اسم الخدمة التي تريد السؤال عنها وسأكمل بدون أي تكرار.",
+    repeatedPrices:
+      "تم توضيح قسم الأسعار بالفعل. اكتب فقط اسم الخدمة التي تريد معرفة سعرها وسأكمل بدون أي تكرار.",
+    repeatedGeneric:
+      "يمكنني المتابعة من هنا بدون تكرار نفس الكلام. اسأل عن الخدمات أو الأسعار أو تفاصيل العيادة، أو اكتب 1 للبدء بالحجز."
   },
 
   tr: {
@@ -88,7 +100,13 @@ const uiTranslations = {
       book: "1- Randevu al",
       services: "2- Hizmetleri sor",
       prices: "3- Fiyatları sor"
-    }
+    },
+    repeatedServices:
+      "Hizmetler bölümü zaten gösterildi. Sadece hangi hizmeti sormak istediğinizi yazın, menüyü tekrar etmeden devam edeyim.",
+    repeatedPrices:
+      "Fiyatlar bölümü zaten gösterildi. Sadece fiyatını öğrenmek istediğiniz hizmeti yazın, menüyü tekrar etmeden devam edeyim.",
+    repeatedGeneric:
+      "Aynı şeyi tekrar etmeden buradan devam edebilirim. Hizmetler, fiyatlar, klinik detayları hakkında sorabilir ya da 1 yazarak rezervasyon sürecini başlatabilirsiniz."
   }
 };
 
@@ -108,10 +126,20 @@ const botTexts = {
     done:
       "Your request has been recorded ✅\nIn the live version, your clinic team can receive this as a structured booking request and continue the follow-up.",
     retryConfirm: "Please type yes to confirm your request.",
-    services:
-      "We currently offer:\n• Cleaning\n• Braces\n• Whitening\nThe live version can also guide patients through common questions and direct them toward the right next step.",
-    prices:
-      "Pricing depends on the case and treatment type.\nFor example, cleaning, whitening, and braces each have different pricing.\nIf you'd like, I can help you create a consultation or booking request.",
+    servicesPrompt:
+      "Sure 👍 Which service would you like to ask about?\n(Cleaning - Braces - Whitening)",
+    pricesPrompt:
+      "Sure 👍 Which service would you like to know the price about?\n(Cleaning - Braces - Whitening)",
+    servicesGeneric:
+      "We currently offer:\n• Cleaning\n• Braces\n• Whitening\nTell me which one you want to ask about and I’ll continue directly.",
+    pricesGeneric:
+      "Pricing depends on the case and treatment type.\nTell me which service you mean and I’ll continue directly without repeating the first message.",
+    priceCleaning:
+      "Cleaning pricing depends on the case after a quick review. In the live version, the assistant can collect the request and pass it to the clinic team for exact confirmation.",
+    priceBraces:
+      "Braces pricing depends on the dental case and treatment plan. The clinic usually confirms the exact cost after evaluation.",
+    priceWhitening:
+      "Whitening pricing depends on the suitable approach for the case. The clinic usually confirms the exact price after a quick assessment.",
     fallback:
       "I can help with appointments, services, prices, clinic hours, location, consultation questions, and treatment basics.\nYou can also type 1 to start booking.",
     bookNudge:
@@ -147,10 +175,20 @@ const botTexts = {
     done:
       "تم تسجيل طلبك ✅\nفي النسخة الحقيقية يمكن لفريق العيادة استلام هذا الطلب بشكل منظم ومتابعته مباشرة.",
     retryConfirm: "للتأكيد أرسل كلمة: نعم",
-    services:
-      "الخدمات المتوفرة حاليًا:\n• تنظيف\n• تقويم\n• تبييض\nكما يمكن للنسخة الحقيقية توجيه المرضى في الأسئلة الشائعة ونقلهم إلى الخطوة المناسبة.",
-    prices:
-      "الأسعار تختلف حسب الحالة ونوع الخدمة المطلوبة.\nمثلًا أسعار التنظيف تختلف عن التبييض أو التقويم.\nإذا رغبت، أستطيع مساعدتك في إنشاء طلب استشارة أو حجز.",
+    servicesPrompt:
+      "أكيد 👍 شو الخدمة يلي بدك تسأل عنها؟\n(تنظيف - تقويم - تبييض)",
+    pricesPrompt:
+      "أكيد 👍 شو الخدمة يلي بدك تعرف سعرها؟\n(تنظيف - تقويم - تبييض)",
+    servicesGeneric:
+      "الخدمات المتوفرة حاليًا:\n• تنظيف\n• تقويم\n• تبييض\nاكتب اسم الخدمة التي تريد السؤال عنها وسأكمل مباشرة.",
+    pricesGeneric:
+      "الأسعار تختلف حسب الحالة ونوع الخدمة المطلوبة.\nاكتب اسم الخدمة التي تقصدها وسأكمل مباشرة بدون تكرار الرسالة الأولى.",
+    priceCleaning:
+      "سعر تنظيف الأسنان يختلف حسب الحالة بعد مراجعة سريعة. في النسخة الحقيقية يمكن للمساعد جمع الطلب وتحويله لفريق العيادة لتأكيد السعر بدقة.",
+    priceBraces:
+      "سعر التقويم يعتمد على حالة الأسنان والخطة العلاجية. عادة يتم تأكيد السعر النهائي بعد التقييم.",
+    priceWhitening:
+      "سعر التبييض يعتمد على الحالة والطريقة المناسبة. عادة يتم تأكيد السعر النهائي بعد تقييم سريع.",
     fallback:
       "أستطيع مساعدتك في الحجز، الخدمات، الأسعار، أوقات العمل، الموقع، الاستشارة، والأسئلة الأساسية عن العلاج.\nويمكنك أيضًا كتابة الرقم 1 للبدء بالحجز.",
     bookNudge:
@@ -186,10 +224,20 @@ const botTexts = {
     done:
       "Talebiniz kaydedildi ✅\nCanlı sürümde klinik ekibi bunu yapılandırılmış bir rezervasyon talebi olarak alabilir ve devamını yönetebilir.",
     retryConfirm: "Onaylamak için lütfen şunu yazın: evet",
-    services:
-      "Şu anda sunduğumuz hizmetler:\n• Temizlik\n• Diş teli\n• Beyazlatma\nCanlı sürüm ayrıca hastaları sık sorulan sorularda yönlendirebilir ve uygun sonraki adıma taşıyabilir.",
-    prices:
-      "Fiyatlar vakaya ve tedavi türüne göre değişir.\nÖrneğin temizlik, beyazlatma ve diş teli için ücretler farklıdır.\nİsterseniz bir danışma veya rezervasyon talebi oluşturmanıza yardımcı olabilirim.",
+    servicesPrompt:
+      "Tabii 👍 Hangi hizmet hakkında soru sormak istiyorsunuz?\n(Temizlik - Diş teli - Beyazlatma)",
+    pricesPrompt:
+      "Tabii 👍 Hangi hizmetin fiyatını öğrenmek istiyorsunuz?\n(Temizlik - Diş teli - Beyazlatma)",
+    servicesGeneric:
+      "Şu anda sunduğumuz hizmetler:\n• Temizlik\n• Diş teli\n• Beyazlatma\nHangi hizmeti sormak istediğinizi yazın, doğrudan devam edeyim.",
+    pricesGeneric:
+      "Fiyatlar vakaya ve tedavi türüne göre değişir.\nHangi hizmeti kastettiğinizi yazın, ilk mesajı tekrar etmeden doğrudan devam edeyim.",
+    priceCleaning:
+      "Temizlik fiyatı durum değerlendirmesine göre değişir. Canlı sürümde asistan talebi toplayıp kliniğe ileterek net fiyat teyidi alabilir.",
+    priceBraces:
+      "Diş teli fiyatı diş yapısına ve tedavi planına göre değişir. Klinik genelde net ücreti değerlendirme sonrası paylaşır.",
+    priceWhitening:
+      "Beyazlatma fiyatı uygun yönteme ve vakaya göre değişir. Klinik genelde net fiyatı kısa değerlendirme sonrası teyit eder.",
     fallback:
       "Randevu, hizmetler, fiyatlar, çalışma saatleri, konum, danışma ve temel tedavi sorularında yardımcı olabilirim.\nİsterseniz 1 yazarak rezervasyon sürecini başlatabilirsiniz.",
     bookNudge:
@@ -212,6 +260,7 @@ const botTexts = {
 };
 
 const supportedLangs = ["en", "ar", "tr"];
+const pureNumberRegex = /^\s*[123]\s*$/;
 
 function getLangFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -230,15 +279,11 @@ function detectMessageLanguage(text) {
 
   const turkishChars = /[çğıöşüÇĞİÖŞÜ]/.test(value);
   const turkishWords =
-    /\b(merhaba|randevu|hizmet|evet|tamam|bugün|yarın|diş|temizlik|fiyat)\b/i.test(
-      value
-    );
+    /\b(merhaba|randevu|hizmet|evet|tamam|bugün|yarın|diş|temizlik|fiyat)\b/i.test(value);
   if (turkishChars || turkishWords) return "tr";
 
   const englishWords =
-    /\b(hello|hi|book|appointment|service|services|price|prices|yes|clinic|cleaning|braces|whitening)\b/i.test(
-      value
-    );
+    /\b(hello|hi|book|appointment|service|services|price|prices|yes|clinic|cleaning|braces|whitening)\b/i.test(value);
   if (englishWords) return "en";
 
   return null;
@@ -253,6 +298,11 @@ let selectedService = "";
 let selectedDay = "";
 let selectedTime = "";
 let phoneNumber = "";
+
+let lastIntent = null;
+let lastFaqKey = null;
+let lastBotText = "";
+let lastNudgeAt = 0;
 
 function updateLanguageButtons() {
   demoLangButtons.forEach((btn) => {
@@ -334,6 +384,13 @@ function addMessage(text, sender = "bot") {
   scrollToBottom();
 }
 
+function addBotMessageSmart(text) {
+  if (text === lastBotText) return false;
+  addMessage(text, "bot");
+  lastBotText = text;
+  return true;
+}
+
 function showTyping() {
   const wrapper = document.createElement("div");
   wrapper.className = "message bot";
@@ -358,8 +415,8 @@ function botReply(text, callback, delay = 950) {
 
   setTimeout(() => {
     hideTyping();
-    addMessage(text, "bot");
-    if (callback) callback();
+    const added = addBotMessageSmart(text);
+    if (callback) callback(added);
   }, delay);
 }
 
@@ -403,156 +460,201 @@ function normalizeText(text) {
   return text.trim().toLowerCase();
 }
 
+function isExactMenuNumber(text, number) {
+  return new RegExp(`^\\s*${number}\\s*$`).test(text);
+}
+
 function includesAny(text, keywords) {
   const value = normalizeText(text);
   return keywords.some((keyword) => value.includes(keyword));
 }
 
 function isBookIntent(text) {
-  return includesAny(text, [
-    "1",
-    "book",
-    "appointment",
-    "reserve",
-    "booking",
-    "حجز",
-    "موعد",
-    "احجز",
-    "randevu",
-    "rezervasyon"
-  ]);
+  return (
+    isExactMenuNumber(text, 1) ||
+    includesAny(text, [
+      "book",
+      "appointment",
+      "reserve",
+      "booking",
+      "حجز",
+      "موعد",
+      "احجز",
+      "randevu",
+      "rezervasyon"
+    ])
+  );
 }
 
 function isServicesIntent(text) {
-  return includesAny(text, [
-    "2",
-    "service",
-    "services",
-    "الخدمات",
-    "خدمات",
-    "استفسار",
-    "hizmet",
-    "hizmetler"
-  ]);
+  return (
+    isExactMenuNumber(text, 2) ||
+    includesAny(text, [
+      "service",
+      "services",
+      "الخدمات",
+      "خدمات",
+      "hizmet",
+      "hizmetler"
+    ])
+  );
 }
 
 function isPricesIntent(text) {
-  return includesAny(text, [
-    "3",
-    "price",
-    "prices",
-    "cost",
-    "pricing",
-    "سعر",
-    "أسعار",
-    "الاسعار",
-    "تكلفة",
-    "fiyat",
-    "ücret",
-    "ucret"
-  ]);
+  return (
+    isExactMenuNumber(text, 3) ||
+    includesAny(text, [
+      "price",
+      "prices",
+      "cost",
+      "pricing",
+      "سعر",
+      "أسعار",
+      "الاسعار",
+      "تكلفة",
+      "fiyat",
+      "ücret",
+      "ucret"
+    ])
+  );
 }
 
 function isConfirmIntent(text) {
   return includesAny(text, ["yes", "نعم", "أجل", "اجل", "اي", "evet", "tamam"]);
 }
 
+function getServiceKey(text) {
+  const value = normalizeText(text);
+
+  if (includesAny(value, ["cleaning", "تنظيف", "temizlik"])) return "cleaning";
+  if (includesAny(value, ["braces", "تقويم", "diş teli", "dis teli"])) return "braces";
+  if (includesAny(value, ["whitening", "تبييض", "beyazlatma"])) return "whitening";
+
+  return null;
+}
+
+function getPriceReplyForService(serviceKey, bot) {
+  if (serviceKey === "cleaning") return bot.priceCleaning;
+  if (serviceKey === "braces") return bot.priceBraces;
+  if (serviceKey === "whitening") return bot.priceWhitening;
+  return bot.pricesGeneric;
+}
+
 function getFAQReply(text) {
   const bot = botTexts[currentLang] || botTexts.en;
 
-  if (
-    includesAny(text, [
-      "hours",
-      "working hours",
-      "open",
-      "دوام",
-      "ساعات",
-      "متى",
-      "çalışma",
-      "saat"
-    ])
-  ) {
-    return bot.hours;
+  if (includesAny(text, ["hours", "working hours", "open", "دوام", "ساعات", "متى", "çalışma", "saat"])) {
+    return { key: "hours", text: bot.hours };
   }
 
-  if (
-    includesAny(text, [
-      "location",
-      "address",
-      "where",
-      "عنوان",
-      "موقع",
-      "وين",
-      "adres",
-      "konum",
-      "nerede"
-    ])
-  ) {
-    return bot.location;
+  if (includesAny(text, ["location", "address", "where", "عنوان", "موقع", "وين", "adres", "konum", "nerede"])) {
+    return { key: "location", text: bot.location };
   }
 
-  if (
-    includesAny(text, [
-      "consultation",
-      "consult",
-      "استشارة",
-      "استشاره",
-      "danışma",
-      "danisma"
-    ])
-  ) {
-    return bot.consultation;
+  if (includesAny(text, ["consultation", "consult", "استشارة", "استشاره", "danışma", "danisma"])) {
+    return { key: "consultation", text: bot.consultation };
   }
 
-  if (
-    includesAny(text, ["pain", "hurt", "وجع", "ألم", "الم", "acı", "agri", "ağrı"])
-  ) {
-    return bot.pain;
+  if (includesAny(text, ["pain", "hurt", "وجع", "ألم", "الم", "acı", "agri", "ağrı"])) {
+    return { key: "pain", text: bot.pain };
   }
 
   if (includesAny(text, ["whitening", "تبييض", "beyazlatma"])) {
-    return bot.whitening;
+    return { key: "whitening", text: bot.whitening };
   }
 
   if (includesAny(text, ["braces", "تقويم", "diş teli", "dis teli"])) {
-    return bot.braces;
+    return { key: "braces", text: bot.braces };
   }
 
   if (includesAny(text, ["cleaning", "تنظيف", "temizlik"])) {
-    return bot.cleaning;
+    return { key: "cleaning", text: bot.cleaning };
   }
 
   if (isPricesIntent(text)) {
-    return bot.prices;
+    return { key: "prices", text: bot.pricesGeneric };
   }
 
   if (isServicesIntent(text)) {
-    return bot.services;
+    return { key: "services", text: bot.servicesGeneric };
   }
 
   return null;
 }
 
-function handleSmartGeneralQuestion(text) {
-  const faq = getFAQReply(text);
+function shouldShowNudge() {
+  const now = Date.now();
+  if (now - lastNudgeAt < 7000) return false;
+  lastNudgeAt = now;
+  return true;
+}
+
+function maybeShowNudge() {
+  const bot = botTexts[currentLang] || botTexts.en;
+  if (!shouldShowNudge()) {
+    showQuickReplies();
+    return;
+  }
+
+  setTimeout(() => {
+    botReply(
+      bot.bookNudge,
+      () => {
+        showQuickReplies();
+      },
+      850
+    );
+  }, 250);
+}
+
+function handleRepeatedIntent(intent) {
+  const t = uiTranslations[currentLang] || uiTranslations.en;
   const bot = botTexts[currentLang] || botTexts.en;
 
-  if (faq) {
-    botReply(faq, () => {
-      setTimeout(() => {
-        botReply(
-          bot.bookNudge,
-          () => {
-            showQuickReplies();
-          },
-          850
-        );
-      }, 250);
-    });
+  if (intent === "services") {
+    state = "awaiting_service_question";
+    botReply(`${t.repeatedServices}\n\n${bot.servicesPrompt}`, () => {
+      showQuickReplies();
+    }, 650);
+    return true;
+  }
+
+  if (intent === "prices") {
+    state = "awaiting_price_question";
+    botReply(`${t.repeatedPrices}\n\n${bot.pricesPrompt}`, () => {
+      showQuickReplies();
+    }, 650);
     return true;
   }
 
   return false;
+}
+
+function handleSmartGeneralQuestion(text) {
+  const faq = getFAQReply(text);
+  if (!faq) return false;
+
+  if (faq.key === lastFaqKey) {
+    const t = uiTranslations[currentLang] || uiTranslations.en;
+    botReply(t.repeatedGeneric, () => {
+      showQuickReplies();
+    }, 650);
+    return true;
+  }
+
+  lastFaqKey = faq.key;
+  lastIntent = faq.key;
+
+  botReply(faq.text, () => {
+    maybeShowNudge();
+  });
+
+  return true;
+}
+
+function resetRepeatMemoryForFlow() {
+  lastIntent = null;
+  lastFaqKey = null;
 }
 
 function handleUserMessage(rawText) {
@@ -568,39 +670,28 @@ function handleUserMessage(rawText) {
 
   if (state === "start") {
     if (isBookIntent(text)) {
+      resetRepeatMemoryForFlow();
       state = "awaiting_name";
       botReply(bot.askName);
       return;
     }
 
     if (isServicesIntent(text)) {
-      state = "general_mode";
-      botReply(bot.services, () => {
-        setTimeout(() => {
-          botReply(
-            bot.bookNudge,
-            () => {
-              showQuickReplies();
-            },
-            850
-          );
-        }, 250);
+      state = "awaiting_service_question";
+      lastIntent = "services";
+      lastFaqKey = "services";
+      botReply(bot.servicesPrompt, () => {
+        showQuickReplies();
       });
       return;
     }
 
     if (isPricesIntent(text)) {
-      state = "general_mode";
-      botReply(bot.prices, () => {
-        setTimeout(() => {
-          botReply(
-            bot.bookNudge,
-            () => {
-              showQuickReplies();
-            },
-            850
-          );
-        }, 250);
+      state = "awaiting_price_question";
+      lastIntent = "prices";
+      lastFaqKey = "prices";
+      botReply(bot.pricesPrompt, () => {
+        showQuickReplies();
       });
       return;
     }
@@ -615,14 +706,131 @@ function handleUserMessage(rawText) {
 
   if (state === "general_mode") {
     if (isBookIntent(text)) {
+      resetRepeatMemoryForFlow();
       state = "awaiting_name";
       botReply(bot.askName);
+      return;
+    }
+
+    if (isServicesIntent(text) && lastIntent === "services") {
+      handleRepeatedIntent("services");
+      return;
+    }
+
+    if (isPricesIntent(text) && lastIntent === "prices") {
+      handleRepeatedIntent("prices");
+      return;
+    }
+
+    if (isServicesIntent(text)) {
+      state = "awaiting_service_question";
+      lastIntent = "services";
+      lastFaqKey = "services";
+      botReply(bot.servicesPrompt, () => {
+        showQuickReplies();
+      });
+      return;
+    }
+
+    if (isPricesIntent(text)) {
+      state = "awaiting_price_question";
+      lastIntent = "prices";
+      lastFaqKey = "prices";
+      botReply(bot.pricesPrompt, () => {
+        showQuickReplies();
+      });
       return;
     }
 
     if (handleSmartGeneralQuestion(text)) return;
 
     botReply(bot.fallback, () => {
+      showQuickReplies();
+    });
+    return;
+  }
+
+  if (state === "awaiting_service_question") {
+    if (isBookIntent(text)) {
+      resetRepeatMemoryForFlow();
+      state = "awaiting_name";
+      botReply(bot.askName);
+      return;
+    }
+
+    if (isPricesIntent(text)) {
+      state = "awaiting_price_question";
+      lastIntent = "prices";
+      lastFaqKey = "prices";
+      botReply(bot.pricesPrompt, () => {
+        showQuickReplies();
+      });
+      return;
+    }
+
+    const serviceKey = getServiceKey(text);
+    if (serviceKey) {
+      state = "general_mode";
+      lastIntent = "services";
+      lastFaqKey = serviceKey;
+      botReply(bot[serviceKey], () => {
+        maybeShowNudge();
+      });
+      return;
+    }
+
+    if (handleSmartGeneralQuestion(text)) {
+      state = "general_mode";
+      return;
+    }
+
+    state = "general_mode";
+    lastIntent = "services";
+    lastFaqKey = "services";
+    botReply(bot.servicesGeneric, () => {
+      showQuickReplies();
+    });
+    return;
+  }
+
+  if (state === "awaiting_price_question") {
+    if (isBookIntent(text)) {
+      resetRepeatMemoryForFlow();
+      state = "awaiting_name";
+      botReply(bot.askName);
+      return;
+    }
+
+    if (isServicesIntent(text)) {
+      state = "awaiting_service_question";
+      lastIntent = "services";
+      lastFaqKey = "services";
+      botReply(bot.servicesPrompt, () => {
+        showQuickReplies();
+      });
+      return;
+    }
+
+    const serviceKey = getServiceKey(text);
+    if (serviceKey) {
+      state = "general_mode";
+      lastIntent = "prices";
+      lastFaqKey = `price_${serviceKey}`;
+      botReply(getPriceReplyForService(serviceKey, bot), () => {
+        maybeShowNudge();
+      });
+      return;
+    }
+
+    if (handleSmartGeneralQuestion(text)) {
+      state = "general_mode";
+      return;
+    }
+
+    state = "general_mode";
+    lastIntent = "prices";
+    lastFaqKey = "prices";
+    botReply(bot.pricesGeneric, () => {
       showQuickReplies();
     });
     return;
@@ -688,7 +896,11 @@ function handleUserMessage(rawText) {
 
   if (state === "done") {
     if (handleSmartGeneralQuestion(text)) return;
-    botReply(bot.done);
+
+    const t = uiTranslations[currentLang] || uiTranslations.en;
+    botReply(t.repeatedGeneric, () => {
+      showQuickReplies();
+    }, 650);
   }
 }
 
@@ -719,11 +931,15 @@ function startConversation() {
   selectedDay = "";
   selectedTime = "";
   phoneNumber = "";
+  lastIntent = null;
+  lastFaqKey = null;
+  lastBotText = "";
+  lastNudgeAt = 0;
 
   const bot = botTexts[currentLang] || botTexts.en;
 
   setTimeout(() => {
-    addMessage(bot.welcome, "bot");
+    addBotMessageSmart(bot.welcome);
     showQuickReplies();
   }, 500);
 }
