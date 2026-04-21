@@ -25,6 +25,8 @@ const translations = {
     heroSecondary: "See How It Works",
     heroHelper:
       "A simplified interactive demo is included below. The live version connects directly to your clinic workflow and WhatsApp conversations.",
+    heroChatStatus: "Online now",
+    heroChatPlaceholder: "Structured intake in progress...",
 
     heroProof1Value: "WhatsApp-first",
     heroProof1: "Built for clinics that manage patient demand through chat",
@@ -211,6 +213,8 @@ const translations = {
     heroSecondary: "شاهد كيف يعمل",
     heroHelper:
       "يوجد بالأسفل نموذج تفاعلي مبسط. النسخة الحية يتم ربطها مباشرة بسير العمل داخل عيادتك ومحادثات واتساب.",
+    heroChatStatus: "متصل الآن",
+    heroChatPlaceholder: "جارٍ تنظيم بيانات الحجز...",
 
     heroProof1Value: "مبني على واتساب",
     heroProof1: "مصمم للعيادات التي تدير اهتمام المرضى عبر المحادثات",
@@ -394,6 +398,8 @@ const translations = {
     heroSecondary: "Nasıl Çalıştığını Gör",
     heroHelper:
       "Aşağıda basitleştirilmiş etkileşimli bir demo bulunuyor. Canlı sürüm doğrudan kliniğinizin iş akışına ve WhatsApp konuşmalarına bağlanır.",
+    heroChatStatus: "Şimdi çevrimiçi",
+    heroChatPlaceholder: "Yapılandırılmış kayıt hazırlanıyor...",
 
     heroProof1Value: "WhatsApp-first",
     heroProof1: "Hasta talebini sohbet üzerinden yöneten klinikler için tasarlandı",
@@ -544,7 +550,7 @@ const translations = {
     pricing3Fit:
       "Daha fazla özelleştirme ve daha derin uyarlama gereken klinikler için.",
     pricing3Text:
-      "Daha özel iş akışları, hizmet mantığı veya uzun vadeli kullanım gereksinimleri olan klinikler için uygundur.",
+      "Daha özel iş akışları، hizmet mantığı veya uzun vadeli kullanım gereksinimleri olan klinikler için uygundur.",
     pricingNote: "Son fiyat klinik büyüklüğüne ve iş akışı gereksinimlerine göre değişir.",
     pricingCta: "Ücretsiz Kurulum Görüşmesi Ayarla",
 
