@@ -1,98 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConveXa AI Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css" />
+  <title>ConveXa Demo — Interactive Clinic WhatsApp Assistant</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="demo-shell">
+  <!-- =========================
+       TOPBAR
+  ========================== -->
+  <header class="demo-topbar">
+    <div class="demo-topbar__inner">
 
-    <div class="demo-topbar">
-      <a href="../index.html" class="demo-back-btn" id="demoBackBtn">← Back</a>
+      <div class="demo-topbar__start">
+        <a href="../index.html" class="back-link" data-i18n="backButton">
+          Back to site
+        </a>
+      </div>
 
-      <div class="demo-topbar-right">
-        <div class="demo-lang-switch">
-          <button class="demo-lang-btn active" data-lang="en">EN</button>
-          <button class="demo-lang-btn" data-lang="ar">AR</button>
-          <button class="demo-lang-btn" data-lang="tr">TR</button>
-        </div>
-
-        <div class="demo-topbar-badge" id="demoTopBadge">
-          Live WhatsApp Demo
+      <div class="demo-topbar__center">
+        <div class="demo-badge" data-i18n="interactiveBadge">
+          Interactive Demo
         </div>
       </div>
+
+      <div class="demo-topbar__end">
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="lang-switch__btn active" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-switch__btn" data-lang="ar" aria-pressed="false">AR</button>
+          <button class="lang-switch__btn" data-lang="tr" aria-pressed="false">TR</button>
+        </div>
+      </div>
+
     </div>
+  </header>
 
-    <section class="demo-hero">
-      <div class="demo-hero-chip" id="demoHeroChip">
-        ⚡ ConveXa AI Assistant
+
+  <!-- =========================
+       DEMO INTRO
+  ========================== -->
+  <section class="demo-intro">
+    <div class="demo-intro__inner">
+
+      <div class="demo-intro__chip" data-i18n="introChip">
+        AI WhatsApp assistant for clinics
       </div>
 
-      <h1 class="demo-hero-title" id="demoHeroTitle">
-        See how a clinic can respond, qualify demand, and collect booking details inside a WhatsApp-style flow
+      <h1 class="demo-intro__title" data-i18n="introTitle">
+        See how ConveXa guides the chat, collects booking details, and prepares a structured clinic-ready request
       </h1>
 
-      <p class="demo-hero-subtitle" id="demoHeroSubtitle">
-        This is a simplified interactive demo. The live version is connected directly to your clinic workflow, services, and patient communication flow.
+      <p class="demo-intro__desc" data-i18n="introDesc">
+        This interactive simulation shows how the assistant responds to patient questions, understands intent, handles service and pricing requests, and turns the conversation into a clear booking request your clinic can follow up on.
       </p>
-    </section>
 
-    <div class="demo-notice" id="demoNotice">
-      🚀 This demo is intentionally simplified. The live version runs on your clinic workflow and can be adapted to your booking process, services, and languages.
     </div>
+  </section>
 
-    <div class="chat-container">
-      <div class="chat-header">
-        <div class="clinic-info">
-          <div class="clinic-avatar">🦷</div>
 
-          <div class="clinic-text">
-            <h3 id="clinicName">Elite Dental Clinic</h3>
-            <span id="clinicRole">WhatsApp Assistant</span>
+  <!-- =========================
+       MAIN DEMO GRID
+  ========================== -->
+  <main class="demo-main">
+    <div class="demo-main__inner">
+
+      <!-- =========================
+           LEFT: CHAT CARD
+      ========================== -->
+      <section class="chat-card">
+
+        <div class="chat-card__glow chat-card__glow--blue"></div>
+        <div class="chat-card__glow chat-card__glow--green"></div>
+
+        <!-- Chat Header -->
+        <header class="chat-card__header">
+          <div class="chat-clinic">
+            <div class="chat-clinic__avatar" aria-hidden="true">C</div>
+
+            <div class="chat-clinic__meta">
+              <div class="chat-clinic__name" data-i18n="clinicName">
+                BrightSmile Dental
+              </div>
+              <div class="chat-clinic__role" data-i18n="clinicRole">
+                ConveXa Assistant
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-card__status">
+            <span class="chat-card__status-dot" aria-hidden="true"></span>
+            <span data-i18n="onlineStatus">Online</span>
+          </div>
+        </header>
+
+        <!-- Chat Body -->
+        <div class="chat-card__body">
+
+          <div
+            class="chat-messages"
+            id="chatMessages"
+            aria-live="polite"
+            aria-label="Conversation area"
+            role="log"
+            aria-relevant="additions text"
+          >
+            <div class="chat-welcome" id="chatWelcome" data-i18n="chatWelcome">
+              Hi! You can ask about services, pricing, or start a booking.
+            </div>
+            <!-- injected by JS -->
+          </div>
+
+          <div class="chat-typing" id="chatTyping" aria-hidden="true">
+            <div class="chat-typing__bubble">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick Replies -->
+        <div class="chat-quick-replies">
+          <div class="chat-quick-replies__label" data-i18n="quickRepliesHint">
+            Suggested actions
+          </div>
+
+          <div class="chat-quick-replies__list" id="quickReplies">
+            <!-- injected by JS -->
           </div>
         </div>
-      </div>
 
-      <div class="chat-messages" id="chatMessages"></div>
+        <!-- Input -->
+        <div class="chat-card__input">
+          <div class="chat-input">
+            <input
+              id="messageInput"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              data-i18n-placeholder="inputPlaceholder"
+              placeholder="Type your message..."
+            >
 
-      <div class="chat-input-area">
-        <input
-          type="text"
-          id="userInput"
-          placeholder="Type your message..."
-          autocomplete="off"
-        />
-        <button id="sendBtn">Send</button>
-      </div>
+            <button id="sendButton" class="send-button" type="button" data-i18n="sendButton">
+              Send
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           RIGHT: SIDEBAR
+      ========================== -->
+      <aside class="demo-sidebar">
+
+        <!-- Live Intake Summary -->
+        <section class="sidebar-card summary-card">
+          <div class="sidebar-card__header">
+            <div>
+              <div class="sidebar-card__eyebrow" data-i18n="summaryEyebrow">
+                Structured request preview
+              </div>
+              <h2 class="sidebar-card__title" data-i18n="summaryTitle">
+                Live Intake Summary
+              </h2>
+            </div>
+
+            <div class="summary-status-badge" id="summaryStatusBadge" data-i18n="summaryStatusCollecting">
+              Collecting
+            </div>
+          </div>
+
+          <div
+            class="summary-completion-banner"
+            id="summaryCompletionBanner"
+            hidden
+            data-i18n="summaryCompletionBanner"
+          >
+            Request ready for clinic follow-up
+          </div>
+
+          <div class="summary-progress">
+            <div class="summary-progress__bar">
+              <div class="summary-progress__fill" id="summaryProgressFill"></div>
+            </div>
+            <div class="summary-progress__text" id="summaryProgressText" data-i18n="summaryProgressIdle">
+              Waiting to start
+            </div>
+          </div>
+
+          <div class="summary-rows">
+            <div class="summary-row">
+              <div class="summary-row__label" data-i18n="fieldService">Service</div>
+              <div class="summary-row__value" id="summaryService" data-i18n="emptyValue">—</div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-row__label" data-i18n="fieldDay">Preferred Day</div>
+              <div class="summary-row__value" id="summaryDay" data-i18n="emptyValue">—</div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-row__label" data-i18n="fieldTime">Preferred Time</div>
+              <div class="summary-row__value" id="summaryTime" data-i18n="emptyValue">—</div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-row__label" data-i18n="fieldName">Patient Name</div>
+              <div class="summary-row__value" id="summaryName" data-i18n="emptyValue">—</div>
+            </div>
+
+            <div class="summary-row">
+              <div class="summary-row__label" data-i18n="fieldPhone">Phone</div>
+              <div class="summary-row__value" id="summaryPhone" data-i18n="emptyValue">—</div>
+            </div>
+          </div>
+
+          <div class="summary-footer" id="summaryFooter" data-i18n="summaryFooterHint">
+            The request becomes clearer as the assistant collects details.
+          </div>
+        </section>
+
+
+        <!-- Capabilities -->
+        <section class="sidebar-card capabilities-card">
+          <div class="sidebar-card__header">
+            <div>
+              <div class="sidebar-card__eyebrow" data-i18n="capabilitiesEyebrow">
+                What this demo can show
+              </div>
+              <h2 class="sidebar-card__title" data-i18n="capabilitiesTitle">
+                Demo Capabilities
+              </h2>
+            </div>
+          </div>
+
+          <div class="capabilities-list">
+            <article class="capability-item">
+              <div class="capability-item__icon">01</div>
+              <div class="capability-item__content">
+                <h3 data-i18n="capBookingTitle">Booking flow</h3>
+                <p data-i18n="capBookingDesc">
+                  Collect service, day, time, patient name, and phone number step by step.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-item">
+              <div class="capability-item__icon">02</div>
+              <div class="capability-item__content">
+                <h3 data-i18n="capServicesTitle">Service questions</h3>
+                <p data-i18n="capServicesDesc">
+                  Answer questions about cleaning, whitening, braces, and consultation.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-item">
+              <div class="capability-item__icon">03</div>
+              <div class="capability-item__content">
+                <h3 data-i18n="capPricingTitle">Pricing guidance</h3>
+                <p data-i18n="capPricingDesc">
+                  Give practical pricing guidance, then route the patient toward the next step.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-item">
+              <div class="capability-item__icon">04</div>
+              <div class="capability-item__content">
+                <h3 data-i18n="capHoursTitle">Clinic hours</h3>
+                <p data-i18n="capHoursDesc">
+                  Respond with opening hours and suggest a useful follow-up action.
+                </p>
+              </div>
+            </article>
+
+            <article class="capability-item">
+              <div class="capability-item__icon">05</div>
+              <div class="capability-item__content">
+                <h3 data-i18n="capFallbackTitle">Fallback handling</h3>
+                <p data-i18n="capFallbackDesc">
+                  Handle unclear messages gracefully and offer clear next options.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+
+        <!-- CTA -->
+        <section class="sidebar-card cta-card">
+          <div class="sidebar-card__header">
+            <div>
+              <div class="sidebar-card__eyebrow" data-i18n="ctaEyebrow">
+                Live deployment
+              </div>
+              <h2 class="sidebar-card__title" data-i18n="ctaTitle">
+                Put this on your clinic number
+              </h2>
+            </div>
+          </div>
+
+          <p class="cta-card__text" data-i18n="ctaText">
+            The real version runs on your clinic WhatsApp number and can be customized for your services, pricing guidance, supported languages, and booking workflow.
+          </p>
+
+          <a
+            class="cta-card__button"
+            id="whatsappCta"
+            href="https://wa.me/31684957550"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="ctaButton"
+          >
+            Contact on WhatsApp
+          </a>
+        </section>
+
+      </aside>
+
     </div>
+  </main>
 
-    <div class="demo-cta" id="demoCTA">
-      <p id="demoCtaText">
-        This is a simplified experience. The live version can run on your clinic’s number, be adapted to your workflow, and help your team collect booking requests more clearly.
-      </p>
-
-      <a
-        href="https://wa.me/31684957550"
-        target="_blank"
-        class="cta-btn"
-        id="demoCtaBtn"
-      >
-        Start your clinic setup on WhatsApp
-      </a>
-    </div>
-
-  </div>
 
   <script src="script.js"></script>
 </body>

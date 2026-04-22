@@ -1,538 +1,522 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClinicBot | WhatsApp AI Assistant for Clinics</title>
-  <meta
-    name="description"
-    content="WhatsApp AI assistant for clinics that answers faster, supports multiple languages, and turns patient chats into structured booking requests."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ConveXa — AI WhatsApp Assistant for Clinics</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <div class="page-glow glow-1"></div>
-  <div class="page-glow glow-2"></div>
-  <div class="particles"></div>
 
-  <nav class="navbar">
-    <a href="#" class="logo">ConveXa</a>
+<!-- ================= NAVBAR ================= -->
 
-    <div class="nav-right">
-      <div class="lang-switch">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="ar">AR</button>
-        <button class="lang-btn" data-lang="tr">TR</button>
-      </div>
+<header class="navbar">
+<div class="nav-inner">
 
-      <a href="demo/index.html" class="nav-cta demo-link" data-i18n="navCta">
-        Try the Demo
-      </a>
-    </div>
-  </nav>
+<div class="logo">
+ConveXa
+</div>
 
-  <main>
-    <section class="hero section">
-      <div class="hero-content">
-        <div class="hero-layout">
-          <div class="hero-main">
-            <div class="hero-badge reveal">
-              <i class="fa-brands fa-whatsapp"></i>
-              <span data-i18n="heroBadge">Built for clinics that need faster WhatsApp responses</span>
-            </div>
+<nav class="nav-links">
+<a href="#how">How it works</a>
+<a href="#pricing">Pricing</a>
+</nav>
 
-            <h1 class="reveal" data-i18n="heroTitle">
-              WhatsApp conversations should move patients toward booking — not sit waiting in the inbox.
-            </h1>
+<div class="nav-actions">
 
-            <p class="hero-sub reveal" data-i18n="heroSub">
-              ConveXa helps clinics reply faster, guide patient questions clearly, and collect structured booking requests through a WhatsApp-first experience.
-            </p>
+<div class="lang-switch">
+<button data-lang="en" class="lang active">EN</button>
+<button data-lang="ar" class="lang">AR</button>
+<button data-lang="tr" class="lang">TR</button>
+</div>
 
-            <div class="hero-actions reveal">
-              <a href="demo/index.html" class="cta-primary demo-link" data-i18n="heroPrimary">
-                Try the Demo
-              </a>
+<a href="demo/index.html" class="btn-primary">
+Try Demo
+</a>
 
-              <a href="#solution" class="cta-secondary" data-i18n="heroSecondary">
-                See How It Works
-              </a>
-            </div>
+</div>
 
-            <div class="hero-helper-wrap reveal">
-              <div class="hero-helper" data-i18n="heroHelper">
-                A simplified interactive demo is included below. The live version connects directly to your clinic workflow and WhatsApp conversations.
-              </div>
-            </div>
-          </div>
+</div>
+</header>
 
-          <div class="hero-side">
-            <div class="hero-proof reveal">
-              <div class="proof-item">
-                <strong data-i18n="heroProof1Value">WhatsApp-first</strong>
-                <span data-i18n="heroProof1">Built for clinics that manage patient demand through chat</span>
-              </div>
-              <div class="proof-item">
-                <strong data-i18n="heroProof2Value">Multi-language</strong>
-                <span data-i18n="heroProof2">Ready for Arabic, English, and Turkish patient conversations</span>
-              </div>
-              <div class="proof-item">
-                <strong data-i18n="heroProof3Value">Structured flow</strong>
-                <span data-i18n="heroProof3">Designed to turn WhatsApp messages into clear booking requests</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="trusted section trust-strip">
-      <p class="trusted-label reveal" data-i18n="trustedLabel">
-        Built with practical clinic workflows in mind
-      </p>
+<!-- ================= HERO ================= -->
 
-      <div class="trusted-logos reveal">
-        <span data-i18n="trustedItem1">Multi-language ready</span>
-        <span data-i18n="trustedItem2">24/7 response capture</span>
-        <span data-i18n="trustedItem3">WhatsApp-first flow</span>
-        <span data-i18n="trustedItem4">Easy to customize</span>
-      </div>
-    </section>
+<section class="hero">
 
-    <section class="stats section">
-      <div class="stats-grid">
-        <div class="stat-card reveal">
-          <h2 data-i18n="stat1Value">Faster</h2>
-          <p data-i18n="stat1">Designed to reduce response delays when new patient messages arrive.</p>
-        </div>
+<div class="hero-inner">
 
-        <div class="stat-card reveal">
-          <h2 data-i18n="stat2Value">Clearer</h2>
-          <p data-i18n="stat2">Guides conversations with consistent answers and clearer next steps.</p>
-        </div>
+<div class="hero-left">
 
-        <div class="stat-card reveal">
-          <h2 data-i18n="stat3Value">Lighter</h2>
-          <p data-i18n="stat3">Reduces repetitive front-desk replies so staff can focus on higher-value tasks.</p>
-        </div>
+<div class="hero-badge">
+AI WhatsApp Assistant for Clinics
+</div>
 
-        <div class="stat-card reveal">
-          <h2 data-i18n="stat4Value">Better organized</h2>
-          <p data-i18n="stat4">Turns incoming chats into structured requests instead of scattered conversations.</p>
-        </div>
-      </div>
-    </section>
+<h1 class="hero-title">
+Turn WhatsApp conversations into structured booking requests
+</h1>
 
-    <section class="trust-points section">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="trustKicker">Trust signals</span>
-        <h2 data-i18n="trustTitle">Practical by design. Easy to understand. Built for real clinic workflows.</h2>
-        <p data-i18n="trustSub">No inflated claims. Just the operational advantages clinics usually want when WhatsApp becomes a serious patient channel.</p>
-      </div>
+<p class="hero-desc">
+ConveXa helps clinics handle patient messages on WhatsApp more intelligently — answering questions, guiding conversations, and collecting booking details in a clear structured format.
+</p>
 
-      <div class="trust-grid">
-        <div class="trust-card reveal">
-          <div class="trust-icon"><i class="fa-solid fa-language"></i></div>
-          <h3 data-i18n="trustCard1Title">Multi-language ready</h3>
-          <p data-i18n="trustCard1Text">Support Arabic, English, and Turkish conversations from one clinic flow.</p>
-        </div>
+<div class="hero-cta">
 
-        <div class="trust-card reveal">
-          <div class="trust-icon"><i class="fa-solid fa-clock"></i></div>
-          <h3 data-i18n="trustCard2Title">Works beyond business hours</h3>
-          <p data-i18n="trustCard2Text">Capture patient demand even when reception is busy or offline.</p>
-        </div>
+<a href="demo/index.html" class="btn-primary big">
+Try the Demo
+</a>
 
-        <div class="trust-card reveal">
-          <div class="trust-icon"><i class="fa-brands fa-whatsapp"></i></div>
-          <h3 data-i18n="trustCard3Title">Built for WhatsApp-first clinics</h3>
-          <p data-i18n="trustCard3Text">The experience stays natural because patients remain in the channel they already use.</p>
-        </div>
+<a href="#how" class="btn-secondary">
+How it works
+</a>
 
-        <div class="trust-card reveal">
-          <div class="trust-icon"><i class="fa-solid fa-sliders"></i></div>
-          <h3 data-i18n="trustCard4Title">Easy to adapt</h3>
-          <p data-i18n="trustCard4Text">Conversation logic can be shaped around your services, workflow, and booking process.</p>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <section class="problem section">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="problemKicker">Why it matters</span>
-        <h2 data-i18n="problemTitle">Patient attention moves fast. Your replies need a system behind them.</h2>
-        <p data-i18n="problemSub">
-          When WhatsApp becomes the first contact point, speed and structure matter as much as the treatment itself.
-        </p>
-      </div>
+<div class="hero-proof">
 
-      <div class="problem-grid">
-        <div class="problem-card reveal">
-          <div class="problem-icon"><i class="fa-regular fa-clock"></i></div>
-          <h3 data-i18n="problemCard1Title">Delay breaks momentum</h3>
-          <p data-i18n="problemCard1Text">A slow reply can interrupt patient intent before the conversation even starts properly.</p>
-        </div>
+<div class="proof-item">
+<span class="proof-dot"></span>
+WhatsApp Native
+</div>
 
-        <div class="problem-card reveal">
-          <div class="problem-icon"><i class="fa-regular fa-message"></i></div>
-          <h3 data-i18n="problemCard2Title">Manual replies do not scale well</h3>
-          <p data-i18n="problemCard2Text">Reception teams should not spend their day repeating the same answers to the same questions.</p>
-        </div>
+<div class="proof-item">
+<span class="proof-dot"></span>
+Multilingual
+</div>
 
-        <div class="problem-card reveal">
-          <div class="problem-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
-          <h3 data-i18n="problemCard3Title">Messy chats create messy follow-up</h3>
-          <p data-i18n="problemCard3Text">Without a clear flow, booking details stay buried inside conversations instead of becoming usable requests.</p>
-        </div>
-      </div>
-    </section>
+<div class="proof-item">
+<span class="proof-dot"></span>
+Structured Booking Requests
+</div>
 
-    <section class="solution section" id="solution">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="solutionKicker">How it works</span>
-        <h2 data-i18n="solutionTitle">A WhatsApp assistant that replies clearly, qualifies intent, and collects the details your team needs.</h2>
-      </div>
+</div>
 
-      <div class="solution-layout">
-        <div class="solution-flow reveal">
-          <div class="flow-window">
-            <div class="flow-top">
-              <span></span><span></span><span></span>
-            </div>
+</div>
 
-            <div class="chat-flow">
-              <div class="chat-bubble patient" data-i18n="flow1">
-                Hi, do you have an appointment this week for teeth whitening?
-              </div>
 
-              <div class="chat-bubble bot" data-i18n="flow2">
-                Yes — we can help with that. Would you prefer Tuesday or Thursday?
-              </div>
 
-              <div class="chat-bubble patient" data-i18n="flow3">
-                Thursday after 5 PM.
-              </div>
+<div class="hero-right">
 
-              <div class="chat-bubble bot" data-i18n="flow4">
-                Perfect. I can prepare a request for 5:30 PM. Please send your full name and phone number.
-              </div>
+<div class="product-scene">
 
-              <div class="chat-status" data-i18n="flowStatus">
-                Booking request prepared automatically
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="chat-window">
 
-        <div class="solution-points">
-          <div class="solution-point reveal">
-            <i class="fa-solid fa-bolt"></i>
-            <div>
-              <h3 data-i18n="solutionPoint1Title">Responds immediately</h3>
-              <p data-i18n="solutionPoint1Text">
-                Patients get an instant answer instead of waiting for manual follow-up.
-              </p>
-            </div>
-          </div>
+<div class="chat-header">
 
-          <div class="solution-point reveal">
-            <i class="fa-solid fa-filter-circle-dollar"></i>
-            <div>
-              <h3 data-i18n="solutionPoint2Title">Qualifies intent</h3>
-              <p data-i18n="solutionPoint2Text">
-                The flow gathers service interest, timing, and contact details in one place.
-              </p>
-            </div>
-          </div>
+<div class="clinic-avatar"></div>
 
-          <div class="solution-point reveal">
-            <i class="fa-solid fa-users-gear"></i>
-            <div>
-              <h3 data-i18n="solutionPoint3Title">Supports the front desk</h3>
-              <p data-i18n="solutionPoint3Text">
-                Your team spends less time on repetitive questions and more time on real patient coordination.
-              </p>
-            </div>
-          </div>
+<div class="clinic-info">
+<div class="clinic-name">
+BrightSmile Dental
+</div>
+<div class="clinic-role">
+Assistant
+</div>
+</div>
 
-          <div class="solution-point reveal">
-            <i class="fa-solid fa-globe"></i>
-            <div>
-              <h3 data-i18n="solutionPoint4Title">Fits multilingual clinics</h3>
-              <p data-i18n="solutionPoint4Text">
-                Useful for clinics that receive mixed-language patient inquiries every week.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="online-indicator"></div>
 
-    <section class="features section">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="featuresKicker">Core features</span>
-        <h2 data-i18n="featuresTitle">
-          The essentials clinics usually need to keep WhatsApp organized and conversion-friendly.
-        </h2>
-      </div>
+</div>
 
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <i class="fa-solid fa-brain"></i>
-          <h3 data-i18n="feature1Title">Smart response handling</h3>
-          <p data-i18n="feature1Text">
-            Handles repeated questions, service inquiries, and common patient intents with clear answers.
-          </p>
-        </div>
 
-        <div class="feature-card reveal">
-          <i class="fa-solid fa-calendar-days"></i>
-          <h3 data-i18n="feature2Title">Booking request flow</h3>
-          <p data-i18n="feature2Text">
-            Moves from inquiry to requested time slot without forcing the team to start from scratch.
-          </p>
-        </div>
+<div class="chat-messages">
 
-        <div class="feature-card reveal">
-          <i class="fa-brands fa-whatsapp"></i>
-          <h3 data-i18n="feature3Title">Native WhatsApp experience</h3>
-          <p data-i18n="feature3Text">
-            Patients stay in the familiar chat flow instead of being pushed into a separate system.
-          </p>
-        </div>
+<div class="msg patient">
+Hi, do you offer teeth whitening?
+</div>
 
-        <div class="feature-card reveal">
-          <i class="fa-solid fa-language"></i>
-          <h3 data-i18n="feature4Title">Language support</h3>
-          <p data-i18n="feature4Text">
-            Built to support Arabic, English, and Turkish communication paths.
-          </p>
-        </div>
+<div class="msg bot">
+Yes we do. Teeth whitening is one of our most requested treatments. Would you like to book a consultation or see pricing guidance?
+</div>
 
-        <div class="feature-card reveal">
-          <i class="fa-solid fa-moon"></i>
-          <h3 data-i18n="feature5Title">After-hours capture</h3>
-          <p data-i18n="feature5Text">
-            Collects new inquiries when staff are busy, offline, or outside opening hours.
-          </p>
-        </div>
+<div class="msg patient">
+I'd like to book an appointment.
+</div>
 
-        <div class="feature-card reveal">
-          <i class="fa-solid fa-chart-line"></i>
-          <h3 data-i18n="feature6Title">Operational clarity</h3>
-          <p data-i18n="feature6Text">
-            Creates a more consistent intake process so conversations are easier to review and follow up.
-          </p>
-        </div>
-      </div>
-    </section>
+<div class="msg bot">
+Great. Which service would you like to book?
+</div>
 
-    <section class="testimonials section">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="testimonialsKicker">Use cases</span>
-        <h2 data-i18n="testimonialsTitle">
-          Designed for clinics that want a cleaner patient communication flow on WhatsApp.
-        </h2>
-      </div>
+</div>
 
-      <div class="testimonial-summary reveal">
-        <div class="summary-chip">
-          <strong data-i18n="summary1Value">Faster replies</strong>
-          <span data-i18n="summary1">Useful when response speed affects patient attention</span>
-        </div>
-        <div class="summary-chip">
-          <strong data-i18n="summary2Value">Less repetition</strong>
-          <span data-i18n="summary2">Helpful for teams answering the same questions every day</span>
-        </div>
-        <div class="summary-chip">
-          <strong data-i18n="summary3Value">Clearer intake</strong>
-          <span data-i18n="summary3">Better when booking details need more structure</span>
-        </div>
-      </div>
+<div class="chat-input">
 
-      <div class="testimonial-grid">
-        <div class="testimonial-card reveal">
-          <div class="quote-top">
-            <i class="fa-solid fa-quote-left"></i>
-          </div>
-          <p data-i18n="testimonial1">
-            Good fit for clinics that receive frequent WhatsApp inquiries and need more consistency in the first reply.
-          </p>
-          <div class="review-stars">★★★★★</div>
-          <span data-i18n="testimonial1Author">Best for — patient intake optimization</span>
-        </div>
+<input type="text" placeholder="Type a message..." disabled>
 
-        <div class="testimonial-card reveal">
-          <div class="quote-top">
-            <i class="fa-solid fa-quote-left"></i>
-          </div>
-          <p data-i18n="testimonial2">
-            Useful when the front desk needs a clearer way to collect service interest, timing, and contact details.
-          </p>
-          <div class="review-stars">★★★★★</div>
-          <span data-i18n="testimonial2Author">Best for — structured booking requests</span>
-        </div>
+<button class="send">
+Send
+</button>
 
-        <div class="testimonial-card reveal">
-          <div class="quote-top">
-            <i class="fa-solid fa-quote-left"></i>
-          </div>
-          <p data-i18n="testimonial3">
-            Especially relevant for clinics serving patients across Arabic, English, and Turkish communication flows.
-          </p>
-          <div class="review-stars">★★★★★</div>
-          <span data-i18n="testimonial3Author">Best for — multilingual clinics</span>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <section class="demo section" id="demo">
-      <div class="demo-card reveal">
-        <div class="demo-text">
-          <span class="section-kicker" data-i18n="demoKicker">Interactive demo</span>
-          <h2 data-i18n="demoTitle">Try the demo and see the booking flow in action.</h2>
-          <p data-i18n="demoSub">
-            This is a simplified demo that shows how the assistant can reply, guide the conversation, and collect booking details.
-          </p>
-          <p class="demo-note" data-i18n="demoNote">
-            The live version is connected directly to your clinic workflow and can be tailored to your services, languages, and booking process.
-          </p>
-        </div>
+</div>
 
-        <div class="demo-actions">
-          <a
-            href="demo/index.html"
-            class="cta-primary demo-btn demo-link"
-            data-i18n="demoBtn"
-          >
-            Try the Demo
-          </a>
 
-          <a
-            href="#pricing"
-            class="cta-secondary demo-btn-secondary"
-            data-i18n="demoBtnSecondary"
-          >
-            See Setup Options
-          </a>
-        </div>
-      </div>
-    </section>
 
-    <section class="pricing section" id="pricing">
-      <div class="section-heading reveal">
-        <span class="section-kicker" data-i18n="pricingKicker">Setup options</span>
-        <h2 data-i18n="pricingTitle">
-          Flexible packaging for clinics at different stages of adoption.
-        </h2>
-        <p data-i18n="pricingSub">
-          Start with a lighter setup, expand into a monthly workflow, or request a more customized ownership model.
-        </p>
-      </div>
+<div class="summary-card">
 
-      <div class="pricing-grid">
-        <div class="pricing-card reveal">
-          <div class="pricing-top">
-            <h3 data-i18n="pricing1Title">Starter</h3>
-            <div class="price soft-price" data-i18n="pricing1Price">Starting from $149</div>
-            <div class="pricing-fit" data-i18n="pricing1Fit">For clinics testing a structured WhatsApp intake flow.</div>
-          </div>
-          <p data-i18n="pricing1Text">
-            Entry setup for clinics that want to start with a focused automation scope and a simpler launch path.
-          </p>
-        </div>
+<div class="summary-title">
+Booking Request
+</div>
 
-        <div class="pricing-card featured reveal">
-          <div class="pricing-badge" data-i18n="pricingBadge">Most flexible</div>
-          <div class="pricing-top">
-            <h3 data-i18n="pricing2Title">Growth</h3>
-            <div class="price soft-price" data-i18n="pricing2Price">Monthly plans available</div>
-            <div class="pricing-fit" data-i18n="pricing2Fit">For clinics that want ongoing support, updates, and workflow refinement.</div>
-          </div>
-          <p data-i18n="pricing2Text">
-            Best fit when WhatsApp is already an active communication channel and the system needs to stay aligned with operations.
-          </p>
-        </div>
+<div class="summary-row">
+<span>Service</span>
+<strong>Teeth Whitening</strong>
+</div>
 
-        <div class="pricing-card reveal">
-          <div class="pricing-top">
-            <h3 data-i18n="pricing3Title">Custom Ownership</h3>
-            <div class="price soft-price" data-i18n="pricing3Price">Custom setup available</div>
-            <div class="pricing-fit" data-i18n="pricing3Fit">For clinics that need a more tailored system and deeper customization.</div>
-          </div>
-          <p data-i18n="pricing3Text">
-            Suitable for clinics with more specific workflows, service logic, or long-term internal use requirements.
-          </p>
-        </div>
-      </div>
+<div class="summary-row">
+<span>Preferred Day</span>
+<strong>Tuesday</strong>
+</div>
 
-      <p class="pricing-note reveal" data-i18n="pricingNote">
-        Final pricing depends on clinic size and workflow requirements.
-      </p>
+<div class="summary-row">
+<span>Preferred Time</span>
+<strong>15:00</strong>
+</div>
 
-      <div class="pricing-cta-wrap reveal">
-        <a href="#" class="cta-primary wa-link" data-wa-message="setup" data-i18n="pricingCta">
-          Book Your Free Setup Call
-        </a>
-      </div>
-    </section>
+<div class="summary-row">
+<span>Patient Name</span>
+<strong>Sarah Johnson</strong>
+</div>
 
-    <section class="final-cta section">
-      <div class="final-cta-card reveal">
-        <span class="section-kicker" data-i18n="finalKicker">Next step</span>
-        <h2 data-i18n="finalTitle">
-          See the flow. Then decide how you want it adapted to your clinic.
-        </h2>
-        <p data-i18n="finalSub">
-          The demo shows the concept. The live version is shaped around your services, response style, languages, and booking workflow.
-        </p>
+<div class="summary-row">
+<span>Phone</span>
+<strong>+31 684957550</strong>
+</div>
 
-        <div class="final-actions">
-          <a
-            href="#"
-            target="_blank"
-            class="cta-primary wa-link"
-            data-i18n="finalBtn"
-            data-wa-message="final"
-          >
-            Start on Your Number
-          </a>
+<div class="summary-status">
+Ready for clinic follow-up
+</div>
 
-          <a
-            href="demo/index.html"
-            class="cta-secondary demo-link"
-            data-i18n="finalSecondaryBtn"
-          >
-            Open the Demo Again
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
+</div>
 
-  <a
-    href="#"
-    class="whatsapp-float wa-link"
-    target="_blank"
-    aria-label="WhatsApp"
-    data-wa-message="float"
-  >
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
+</div>
 
-  <script src="script.js"></script>
+</div>
 
-  <div class="cursor"></div>
-  <div class="cursor-blur"></div>
+</div>
+
+</section>
+
+
+
+<!-- ================= VALUE STRIP ================= -->
+
+<section class="value-strip">
+
+<div class="value-inner">
+
+<div class="value-item">
+Instant patient responses on WhatsApp
+</div>
+
+<div class="value-item">
+Collect booking details automatically
+</div>
+
+<div class="value-item">
+Reduce front desk message overload
+</div>
+
+<div class="value-item">
+Turn chats into structured requests
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section id="how" class="how">
+
+<div class="section-header">
+<h2>How ConveXa Works</h2>
+<p>
+Guide conversations, collect booking details, and turn WhatsApp messages into structured requests your clinic can act on immediately.
+</p>
+</div>
+
+<div class="steps">
+
+<div class="step-card">
+
+<div class="step-number">
+1
+</div>
+
+<h3>
+Respond
+</h3>
+
+<p>
+Answer common patient questions instantly through WhatsApp with clear, helpful responses.
+</p>
+
+</div>
+
+
+<div class="step-card">
+
+<div class="step-number">
+2
+</div>
+
+<h3>
+Guide
+</h3>
+
+<p>
+Guide patients through services, pricing guidance, and clinic information naturally.
+</p>
+
+</div>
+
+
+<div class="step-card">
+
+<div class="step-number">
+3
+</div>
+
+<h3>
+Collect
+</h3>
+
+<p>
+Collect booking information such as service, preferred day, time, and patient details.
+</p>
+
+</div>
+
+
+<div class="step-card">
+
+<div class="step-number">
+4
+</div>
+
+<h3>
+Deliver
+</h3>
+
+<p>
+Turn the conversation into a structured booking request ready for clinic confirmation.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= DEMO TEASER ================= -->
+
+<section class="demo-teaser">
+
+<div class="demo-inner">
+
+<div class="demo-text">
+
+<h2>
+Try the interactive demo
+</h2>
+
+<p>
+Experience how ConveXa handles patient questions, guides conversations, and prepares booking requests directly from WhatsApp-style messages.
+</p>
+
+<a href="demo/index.html" class="btn-primary big">
+Open Interactive Demo
+</a>
+
+</div>
+
+
+<div class="demo-preview">
+
+<div class="mini-chat">
+
+<div class="mini-msg patient">
+What are your clinic hours?
+</div>
+
+<div class="mini-msg bot">
+We are open Monday to Friday from 09:00 to 18:00. Would you like to book an appointment or see available services?
+</div>
+
+<div class="mini-msg patient">
+Book appointment
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= PRICING ================= -->
+
+<section id="pricing" class="pricing">
+
+<div class="section-header">
+
+<h2>
+Pricing
+</h2>
+
+<p>
+Flexible options depending on your clinic needs and setup preferences.
+</p>
+
+</div>
+
+
+<div class="pricing-grid">
+
+<div class="price-card">
+
+<h3>
+Starter
+</h3>
+
+<div class="price">
+$149+
+</div>
+
+<p>
+Basic AI assistant setup for clinics starting with WhatsApp automation.
+</p>
+
+<a href="https://wa.me/31684957550" class="btn-secondary">
+Contact on WhatsApp
+</a>
+
+</div>
+
+
+
+<div class="price-card featured">
+
+<div class="featured-label">
+Most Popular
+</div>
+
+<h3>
+Guided Setup
+</h3>
+
+<div class="price">
+Talk to us
+</div>
+
+<p>
+We configure the assistant with your services, pricing guidance, and booking flows.
+</p>
+
+<a href="https://wa.me/31684957550" class="btn-primary">
+Start Setup
+</a>
+
+</div>
+
+
+
+<div class="price-card">
+
+<h3>
+Custom
+</h3>
+
+<div class="price">
+Tailored
+</div>
+
+<p>
+For clinics needing deeper integrations or customized workflows.
+</p>
+
+<a href="https://wa.me/31684957550" class="btn-secondary">
+Contact us
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="final-cta">
+
+<div class="cta-inner">
+
+<h2>
+See how ConveXa organizes WhatsApp conversations for your clinic
+</h2>
+
+<p>
+Try the demo experience and see how patient messages become structured booking requests.
+</p>
+
+<div class="cta-buttons">
+
+<a href="demo/index.html" class="btn-primary big">
+Open Demo
+</a>
+
+<a href="https://wa.me/31684957550" class="btn-whatsapp">
+Contact on WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="footer-inner">
+
+<div class="footer-brand">
+ConveXa
+</div>
+
+<p class="footer-desc">
+AI assistant designed for clinics to handle WhatsApp conversations, guide patients, and prepare structured booking requests.
+</p>
+
+</div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
