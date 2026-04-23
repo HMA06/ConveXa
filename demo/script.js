@@ -741,9 +741,9 @@ const translations = {
       "Danışmanlık, hasta doğru tedaviyi seçmeden önce yönlendirme almak istediğinde iyi bir başlangıçtır.",
 
     pricingCleaning:
-      "Temizlik genelde $80 civarından başlar; bu, vakanın durumuna ve ek hijyen işlemlerine bağlıdır.",
+      "Temizlik genelde $80 civarından başlar; bu، vakanın durumuna ve ek hijyen işlemlerine bağlıdır.",
     pricingWhitening:
-      "Beyazlatma genelde $220 civarından başlar; bu, yönteme ve değerlendirme sonucuna göre değişir.",
+      "Beyazlatma genelde $220 civarından başlar; bu، yönteme ve değerlendirme sonucuna göre değişir.",
     pricingBraces:
       "Tel fiyatları tedavi planına bağlıdır, ancak danışmanlık ücretleri genelde $95 civarından başlar.",
     pricingConsultation:
@@ -918,7 +918,10 @@ function applyLanguage(lang) {
 
   setText(dom.chatWelcome, t.chatWelcome);
   setText(dom.quickRepliesLabel, t.quickRepliesHint);
-  if (dom.messageInput) dom.messageInput.placeholder = t.inputPlaceholder;
+  if (dom.messageInput) {
+    dom.messageInput.placeholder = t.inputPlaceholder;
+    dom.messageInput.setAttribute("dir", lang === "ar" ? "rtl" : "auto");
+  }
   setText(dom.sendButton, t.sendButton);
 
   setText(dom.summaryEyebrow, t.summaryEyebrow);
@@ -1045,7 +1048,6 @@ function scoreIntent(text, phrases) {
 
   phrases.forEach((phrase) => {
     const normalizedPhrase = normalizeText(phrase);
-
     if (!normalizedPhrase) return;
 
     if (text.includes(normalizedPhrase)) {
@@ -1556,6 +1558,14 @@ function addMessage(text, type) {
   bubble.className = `chat-message chat-message--${bubbleType}`;
   bubble.innerHTML = formatMessage(text);
 
+  if (bubbleType === "user") {
+    bubble.setAttribute("dir", "auto");
+  } else if (app.lang === "ar") {
+    bubble.setAttribute("dir", "rtl");
+  } else {
+    bubble.setAttribute("dir", "ltr");
+  }
+
   dom.chatMessages.appendChild(bubble);
   scrollChatToBottom();
 }
@@ -1589,6 +1599,7 @@ function renderCompletionChatCTA() {
   link.style.color = "#f8fff9";
   link.style.border = "1px solid rgba(53, 221, 136, 0.28)";
   link.style.boxShadow = "0 16px 30px rgba(13, 102, 58, 0.22), inset 0 1px 0 rgba(255,255,255,0.12)";
+  link.setAttribute("dir", app.lang === "ar" ? "rtl" : "ltr");
 
   wrapper.appendChild(link);
   dom.chatMessages.appendChild(wrapper);
@@ -1625,6 +1636,15 @@ function updateSummaryUI() {
   setText(dom.summaryTime, app.summary.time || t.emptyValue);
   setText(dom.summaryName, app.summary.name || t.emptyValue);
   setText(dom.summaryPhone, app.summary.phone || t.emptyValue);
+
+  [dom.summaryService, dom.summaryDay, dom.summaryTime, dom.summaryName, dom.summaryPhone].forEach((node) => {
+    if (!node) return;
+    if (app.lang === "ar") {
+      node.setAttribute("dir", "auto");
+    } else {
+      node.setAttribute("dir", "ltr");
+    }
+  });
 
   const completedCount = SUMMARY_FIELDS.filter((field) => Boolean(app.summary[field])).length;
   const percent = Math.round((completedCount / SUMMARY_FIELDS.length) * 100);
