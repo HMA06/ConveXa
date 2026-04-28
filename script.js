@@ -1,905 +1,548 @@
-const appState = {
-  lang: "en",
-  heroSimulationStarted: false,
-  heroTypingTimeouts: [],
-  heroLoopTimeout: null
-};
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  },
+  { threshold: 0.14 }
+);
 
-const whatsappNumber = "31684957550";
-const whatsappPresetMessage = "Hello, I'm interested in ConveXa for my clinic.";
+document
+  .querySelectorAll(".glass-card, .feature-card, .workflow-step, .price-card, .trust-grid div, .proof-box div, .faq-list details, .lead-form")
+  .forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(18px)";
+    el.style.transition = "0.55s ease";
+    observer.observe(el);
+  });
+
+const style = document.createElement("style");
+style.innerHTML = `
+  .show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+`;
+document.head.appendChild(style);
 
 const translations = {
   en: {
-    pageTitle: "ConveXa — AI WhatsApp Assistant for Clinics",
-    htmlLang: "en",
-    dir: "ltr",
-
-    navHow: "How it works",
+    navProblems: "Problems",
+    navSolution: "Solution",
     navPricing: "Pricing",
-    navDemo: "Try Demo",
+    navDemo: "Demo",
+    eyebrow: "Built for high-volume aesthetic, dental & medical tourism clinics",
+    heroTitle: "Turn WhatsApp messages into booked patients — before they go to another clinic.",
+    heroSubtitle: "Most clinics lose patients because they reply too late. ConveXa replies instantly, qualifies patients, and guides them to booking.",
+    tryDemo: "See how clinics turn messages into bookings",
+    talkWhatsapp: "Get your clinic setup",
+    trustResponse: "response feel",
+    trustIntake: "patient intake",
+    trustReady: "Clinic-ready",
+    trustLanguages: "structured patient flows",
+    assistantName: "ConveXa AI Receptionist",
+    onlineNow: "online now",
+    chat1: "Hello 👋 Which treatment are you interested in?",
+    chat2: "Dental implants",
+    chat3: "Great. Are you looking for a consultation this week?",
+    chat4: "Yes, preferably tomorrow",
+    chat5: "We have 2:00 PM and 5:30 PM available. Which works best?",
+    float1Title: "Qualified lead",
+    float1Text: "Service + preferred time collected",
+    float2Title: "Booking intent detected",
+    float2Text: "Patient guided automatically",
 
-    heroBadge: "AI WhatsApp Assistant for Clinics",
-    heroTitle: "Turn WhatsApp conversations into structured booking requests",
-    heroDesc:
-      "ConveXa helps clinics handle patient messages on WhatsApp more intelligently — answering questions, guiding conversations, and collecting booking details in a clear structured format.",
-    heroPrimary: "Try the Demo",
-    heroSecondary: "How it works",
+    beforeAfterLabel: "Before / After",
+    beforeAfterTitle: "See the difference in the patient journey.",
+    beforeAfterText: "ConveXa turns missed conversations into structured booking requests.",
+    beforeTitle: "Before ConveXa",
+    before1: "Patient asks",
+    before2: "Clinic replies after hours",
+    before3: "Patient disappears",
+    afterTitle: "After ConveXa",
+    after1: "Instant reply",
+    after2: "Guided conversation",
+    after3: "Booking request collected",
 
-    proof1: "WhatsApp Native",
-    proof2: "Multilingual",
-    proof3: "Structured Booking Requests",
+    problemLabel: "The problem",
+    problemTitle: "Your next patient should not wait for a reply.",
+    problemText: "Clinics lose high-intent patients when WhatsApp becomes messy, slow, and unstructured. Every delayed reply is a lost patient. Patients don’t wait. They message the next clinic.",
+    problem1Title: "Slow replies",
+    problem1Text: "Patients compare clinics fast. Delayed replies turn warm leads into lost revenue.",
+    problem2Title: "Message overload",
+    problem2Text: "Your team repeats the same answers while important inquiries get buried.",
+    problem3Title: "After-hours loss",
+    problem3Text: "Night and weekend messages often disappear before your team can respond.",
+    problem4Title: "No intake structure",
+    problem4Text: "Missing service, date, budget, or contact details makes follow-up slower.",
 
-    clinicName: "BrightSmile Dental",
-    clinicRole: "Assistant",
-    chatPlaceholder: "Type a message...",
-    send: "Send",
+    solutionLabel: "The solution",
+    solutionTitle: "A WhatsApp AI receptionist designed to convert patients.",
+    solutionText: "ConveXa is not a basic auto-reply. It is a patient conversion engine that guides patients through a structured conversation until they are ready to book.",
+    step1Title: "Understand intent",
+    step1Text: "Detects whether the patient wants prices, services, availability, or booking.",
+    step2Title: "Ask follow-up questions",
+    step2Text: "Collects treatment interest, preferred day, time, name, and phone.",
+    step3Title: "Guide toward appointment",
+    step3Text: "Turns loose conversations into structured booking requests.",
+    step4Title: "Handoff when needed",
+    step4Text: "Complex cases can be escalated to your team with context already collected.",
 
-    heroMsg1: "Hi, do you offer teeth whitening?",
-    heroMsg2:
-      "Yes we do. Teeth whitening is one of our most requested treatments. Would you like to book a consultation or see pricing guidance?",
-    heroMsg3: "I'd like to book an appointment.",
-    heroMsg4: "Great. Which service would you like to book?",
+    proof1Title: "+3x faster response time",
+    proof1Text: "Patients get answers while they are still interested.",
+    proof2Title: "+2x more booking requests",
+    proof2Text: "Structured flows push conversations toward action.",
+    proof3Title: "24/7 patient handling",
+    proof3Text: "Night, weekend, and peak-hour inquiries keep moving.",
 
-    bookingTitle: "Booking Request",
-    summaryService: "Service",
-    summaryDay: "Preferred Day",
-    summaryTime: "Preferred Time",
-    summaryName: "Patient Name",
-    summaryPhone: "Phone",
-    summaryServiceValue: "Teeth Whitening",
-    summaryDayValue: "Tuesday",
-    summaryTimeValue: "15:00",
-    summaryNameValue: "Sarah Johnson",
-    summaryPhoneValue: "+31 684957550",
-    summaryStatus: "Ready for clinic follow-up",
+    howLabel: "How it works",
+    howTitle: "How it works in your clinic.",
+    how1Title: "Connect WhatsApp",
+    how1Text: "Start from the channel your patients already use every day.",
+    how2Title: "Set your services",
+    how2Text: "Build flows around treatments, prices, availability, and handoff rules.",
+    how3Title: "Receive qualified booking requests",
+    how3Text: "Your team gets clearer requests with patient details already collected.",
 
-    value1: "Instant patient responses on WhatsApp",
-    value2: "Collect booking details automatically",
-    value3: "Reduce front desk message overload",
-    value4: "Turn chats into structured requests",
+    intelLabel: "Patient conversion engine",
+    intelTitle: "Built to sell the appointment, not just answer messages.",
+    intel1Title: "Service-aware conversations",
+    intel1Text: "Dental implants, whitening, fillers, hair transplant consultation, medical tourism requests — each flow can be structured differently.",
+    intel2Title: "Booking-first logic",
+    intel2Text: "The AI receptionist keeps the patient moving forward: service → day → time → name → phone → confirmation.",
+    intel3Title: "Multilingual-ready",
+    intel3Text: "The website is available in English, Arabic, and Turkish, while system language support can expand based on clinic needs.",
 
-    howTitle: "How ConveXa Works",
-    howDesc:
-      "Guide conversations, collect booking details, and turn WhatsApp messages into structured requests your clinic can act on immediately.",
+    trustLabel: "Trust",
+    trustTitle: "Designed for real clinic environments.",
+    trust1Title: "Responds in seconds",
+    trust1Text: "Fast replies when patients are still interested.",
+    trust2Title: "Built for real workflows",
+    trust2Text: "Questions, services, timing, contact details, and handoff.",
+    trust3Title: "High-conversion conversations",
+    trust3Text: "Structured to move patients toward confirmed appointments.",
+    trust4Title: "Website in 3 languages",
+    trust4Text: "English, Arabic, and Turkish experience for clinic owners.",
 
-    step1Title: "Respond",
-    step1Desc:
-      "Answer common patient questions instantly through WhatsApp with clear, helpful responses.",
+    whoLabel: "Who is this for",
+    whoTitle: "Built for clinics where every inquiry can become revenue.",
+    who1Title: "Aesthetic clinics",
+    who1Text: "Botox, fillers, skin treatments, and consultation requests.",
+    who2Title: "Dental clinics",
+    who2Text: "Implants, veneers, whitening, smile design, and consultations.",
+    who3Title: "Medical tourism clinics",
+    who3Text: "Treatment interest, travel timing, languages, and qualified requests.",
 
-    step2Title: "Guide",
-    step2Desc:
-      "Guide patients through services, pricing guidance, and clinic information naturally.",
+    pricingLabel: "Pricing",
+    pricingTitle: "Start simple. Upgrade when your clinic needs more intelligence.",
+    basicPlan: "Basic",
+    basicText: "For clinics that want fast WhatsApp automation without complexity.",
+    basic1: "Automated replies",
+    basic2: "FAQ handling",
+    basic3: "Basic booking flow",
+    basic4: "WhatsApp-ready setup",
+    startBasic: "Start Basic",
+    popular: "⭐ Most clinics choose this",
+    proPlan: "Pro",
+    customQuote: "Custom quote",
+    proText: "Designed to actually convert patients into bookings",
+    pro1: "AI-like patient conversations",
+    pro2: "Advanced booking scenarios",
+    pro3: "Service-based flows",
+    pro4: "Patient qualification logic",
+    pro5: "Higher conversion flows",
+    pro6: "High message volume handling",
+    discussPro: "Discuss Pro Plan",
+    customPlan: "Custom",
+    tailored: "Tailored",
+    customText: "For clinics with multiple branches, custom flows, or special patient journeys.",
+    custom1: "Fully tailored system flow",
+    custom2: "Multi-language structure",
+    custom3: "Custom handoff rules",
+    custom4: "Integration-ready architecture",
+    buildCustom: "Build Custom System",
 
-    step3Title: "Collect",
-    step3Desc:
-      "Collect booking information such as service, preferred day, time, and patient details.",
+    leadLabel: "Get started",
+    leadTitle: "Get your clinic setup",
+    leadText: "Send your clinic details and we will help you set up your WhatsApp booking system.",
+    clinicName: "Clinic name",
+    country: "Country",
+    whatsapp: "WhatsApp",
+    submitLead: "Submit",
 
-    step4Title: "Deliver",
-    step4Desc:
-      "Turn the conversation into a structured booking request ready for clinic confirmation.",
+    faqLabel: "FAQ",
+    faqTitle: "Questions clinics ask before starting.",
+    faq1Q: "Does this work with WhatsApp Business?",
+    faq1A: "Yes. ConveXa is built around WhatsApp-first clinic workflows.",
+    faq2Q: "Can I customize flows?",
+    faq2A: "Yes. Flows can be customized by service, clinic type, language, and booking process.",
+    faq3Q: "What if the patient asks something complex?",
+    faq3A: "Complex cases can be handed off to your team with the patient context already collected.",
+    faq4Q: "How long does setup take?",
+    faq4A: "Setup depends on your services and flows, but the system is designed to launch quickly.",
+    faq5Q: "Does it support multiple languages?",
+    faq5A: "Yes. The website supports English, Arabic, and Turkish, and patient flows can be expanded based on clinic needs.",
 
-    demoTitle: "Try the interactive demo",
-    demoDesc:
-      "Experience how ConveXa handles patient questions, guides conversations, and prepares booking requests directly from WhatsApp-style messages.",
-    demoCta: "Open Interactive Demo",
-
-    demoMsg1: "What are your clinic hours?",
-    demoMsg2:
-      "We are open Monday to Friday from 09:00 to 18:00. Would you like to book an appointment or see available services?",
-    demoMsg3: "Book appointment",
-
-    pricingTitle: "Pricing",
-    pricingDesc:
-      "Flexible options depending on your clinic needs and setup preferences.",
-
-    plan1Title: "Starter",
-    plan1Price: "$149+",
-    plan1Desc:
-      "Basic AI assistant setup for clinics starting with WhatsApp automation.",
-    plan1Cta: "Contact on WhatsApp",
-
-    featuredLabel: "Most Popular",
-    plan2Title: "Guided Setup",
-    plan2Price: "Talk to us",
-    plan2Desc:
-      "We configure the assistant with your services, pricing guidance, and booking flows.",
-    plan2Cta: "Start Setup",
-
-    plan3Title: "Custom",
-    plan3Price: "Tailored",
-    plan3Desc:
-      "For clinics needing deeper integrations or customized workflows.",
-    plan3Cta: "Contact us",
-
-    finalTitle: "See how ConveXa organizes WhatsApp conversations for your clinic",
-    finalDesc:
-      "Try the demo experience and see how patient messages become structured booking requests.",
-    finalPrimary: "Open Demo",
-    finalSecondary: "Contact on WhatsApp",
-
-    footerBrand: "ConveXa",
-    footerDesc:
-      "AI assistant designed for clinics to handle WhatsApp conversations, guide patients, and prepare structured booking requests."
+    startWithConvexa: "Start with ConveXa",
+    finalTitle: "Your next patient is already messaging you.",
+    finalText: "The only question is: who replies first?",
+    continueWhatsapp: "Start with ConveXa"
   },
 
   ar: {
-    pageTitle: "ConveXa — مساعد واتساب ذكي للعيادات",
-    htmlLang: "ar",
-    dir: "rtl",
-
-    navHow: "كيف يعمل",
+    navProblems: "المشاكل",
+    navSolution: "الحل",
     navPricing: "الأسعار",
-    navDemo: "جرّب الديمو",
+    navDemo: "الديمو",
+    eyebrow: "مصمم للعيادات عالية الطلب: التجميل، الأسنان، والسياحة العلاجية",
+    heroTitle: "حوّل رسائل واتساب إلى مرضى محجوزين — قبل أن يذهبوا إلى عيادة أخرى.",
+    heroSubtitle: "معظم العيادات تخسر المرضى لأنها ترد متأخرة. ConveXa يرد فوراً، يؤهل المرضى، ويوجههم نحو الحجز.",
+    tryDemo: "شاهد كيف تحوّل العيادات الرسائل إلى حجوزات",
+    talkWhatsapp: "جهّز عيادتك",
+    trustResponse: "استجابة سريعة",
+    trustIntake: "استقبال المرضى",
+    trustReady: "جاهز للعيادات",
+    trustLanguages: "مسارات مرضى منظمة",
+    assistantName: "موظف استقبال ConveXa الذكي",
+    onlineNow: "متصل الآن",
+    chat1: "مرحباً 👋 ما العلاج الذي تهتم به؟",
+    chat2: "زراعة الأسنان",
+    chat3: "رائع. هل ترغب باستشارة هذا الأسبوع؟",
+    chat4: "نعم، يفضل غداً",
+    chat5: "لدينا 2:00 مساءً أو 5:30 مساءً. أي وقت يناسبك؟",
+    float1Title: "عميل مؤهل",
+    float1Text: "تم جمع الخدمة والوقت المفضل",
+    float2Title: "نية حجز واضحة",
+    float2Text: "تم توجيه المريض تلقائياً",
 
-    heroBadge: "مساعد واتساب ذكي مخصص للعيادات",
-    heroTitle: "حوّل محادثات واتساب إلى طلبات حجز منظمة وواضحة",
-    heroDesc:
-      "يساعد ConveXa العيادات على التعامل مع رسائل المرضى عبر واتساب بشكل أكثر ذكاءً — من الرد على الأسئلة وتوجيه المحادثة إلى جمع تفاصيل الحجز وتحويلها إلى طلب منظم قابل للمتابعة.",
-    heroPrimary: "جرّب الديمو",
-    heroSecondary: "كيف يعمل",
+    beforeAfterLabel: "قبل / بعد",
+    beforeAfterTitle: "شاهد الفرق في رحلة المريض.",
+    beforeAfterText: "ConveXa يحوّل المحادثات الضائعة إلى طلبات حجز منظمة.",
+    beforeTitle: "قبل ConveXa",
+    before1: "المريض يسأل",
+    before2: "العيادة ترد بعد ساعات",
+    before3: "المريض يختفي",
+    afterTitle: "بعد ConveXa",
+    after1: "رد فوري",
+    after2: "محادثة موجهة",
+    after3: "تم جمع طلب الحجز",
 
-    proof1: "يعمل عبر واتساب",
-    proof2: "متعدد اللغات",
-    proof3: "طلبات حجز منظمة",
+    problemLabel: "المشكلة",
+    problemTitle: "مريضك القادم لا يجب أن ينتظر الرد.",
+    problemText: "العيادات تخسر مرضى جاهزين عندما يصبح واتساب بطيئاً وغير منظم. كل رد متأخر يعني مريضاً ضائعاً. المرضى لا ينتظرون، بل يراسلون العيادة التالية.",
+    problem1Title: "ردود بطيئة",
+    problem1Text: "المرضى يقارنون بسرعة. التأخير يحول الفرص الجاهزة إلى خسارة.",
+    problem2Title: "ضغط الرسائل",
+    problem2Text: "فريقك يكرر نفس الردود بينما تضيع الرسائل المهمة.",
+    problem3Title: "خسارة خارج الدوام",
+    problem3Text: "رسائل الليل ونهاية الأسبوع تضيع قبل أن يرد الفريق.",
+    problem4Title: "لا يوجد تنظيم للاستقبال",
+    problem4Text: "غياب الخدمة أو التاريخ أو بيانات التواصل يجعل المتابعة أبطأ.",
 
-    clinicName: "برايت سمايل للأسنان",
-    clinicRole: "المساعد",
-    chatPlaceholder: "اكتب رسالة...",
-    send: "إرسال",
+    solutionLabel: "الحل",
+    solutionTitle: "موظف استقبال ذكي على واتساب مصمم لتحويل المرضى.",
+    solutionText: "ConveXa ليس رداً تلقائياً بسيطاً. إنه محرك تحويل للمرضى يقودهم داخل محادثة منظمة حتى يصبحوا جاهزين للحجز.",
+    step1Title: "فهم نية المريض",
+    step1Text: "يعرف إن كان المريض يسأل عن الأسعار أو الخدمات أو المواعيد أو الحجز.",
+    step2Title: "طرح أسئلة متابعة",
+    step2Text: "يجمع الخدمة المطلوبة، اليوم، الوقت، الاسم، ورقم الهاتف.",
+    step3Title: "التوجيه نحو الحجز",
+    step3Text: "يحوّل المحادثات العشوائية إلى طلبات حجز منظمة.",
+    step4Title: "تحويل للبشر عند الحاجة",
+    step4Text: "الحالات المعقدة يمكن تحويلها للفريق مع كل المعلومات المهمة.",
 
-    heroMsg1: "مرحبًا، هل لديكم خدمة تبييض الأسنان؟",
-    heroMsg2:
-      "نعم، نوفر خدمة تبييض الأسنان وهي من أكثر الخدمات طلبًا. هل تود حجز استشارة أم الاطلاع على توجيه سعري؟",
-    heroMsg3: "أرغب في حجز موعد.",
-    heroMsg4: "ممتاز. ما الخدمة التي ترغب في حجزها؟",
+    proof1Title: "+3x سرعة استجابة أعلى",
+    proof1Text: "المرضى يحصلون على الرد وهم ما زالوا مهتمين.",
+    proof2Title: "+2x طلبات حجز أكثر",
+    proof2Text: "المسارات المنظمة تدفع المحادثات نحو خطوة واضحة.",
+    proof3Title: "تعامل مع المرضى 24/7",
+    proof3Text: "رسائل الليل ونهاية الأسبوع وأوقات الضغط تبقى مستمرة.",
 
-    bookingTitle: "طلب الحجز",
-    summaryService: "الخدمة",
-    summaryDay: "اليوم المفضل",
-    summaryTime: "الوقت المفضل",
-    summaryName: "اسم المريض",
-    summaryPhone: "رقم الهاتف",
-    summaryServiceValue: "تبييض الأسنان",
-    summaryDayValue: "الثلاثاء",
-    summaryTimeValue: "15:00",
-    summaryNameValue: "سارة جونسون",
-    summaryPhoneValue: "+31 684957550",
-    summaryStatus: "جاهز لمتابعة العيادة",
+    howLabel: "كيف يعمل",
+    howTitle: "كيف يعمل داخل عيادتك.",
+    how1Title: "اربط واتساب",
+    how1Text: "ابدأ من القناة التي يستخدمها مرضاك يومياً.",
+    how2Title: "حدد خدماتك",
+    how2Text: "ابنِ مسارات حول العلاجات، الأسعار، التوفر، وقواعد التحويل للفريق.",
+    how3Title: "استقبل طلبات حجز مؤهلة",
+    how3Text: "فريقك يستلم طلبات أوضح مع بيانات المريض جاهزة.",
 
-    value1: "ردود فورية على رسائل المرضى عبر واتساب",
-    value2: "جمع تفاصيل الحجز تلقائيًا",
-    value3: "تقليل الضغط على موظفي الاستقبال",
-    value4: "تحويل المحادثات إلى طلبات منظمة",
+    intelLabel: "محرك تحويل المرضى",
+    intelTitle: "مصمم لبيع الموعد، وليس فقط الرد على الرسائل.",
+    intel1Title: "محادثات حسب الخدمة",
+    intel1Text: "زراعة الأسنان، التبييض، الفيلر، استشارة زراعة الشعر، والسياحة العلاجية — كل مسار يمكن تنظيمه حسب الحاجة.",
+    intel2Title: "منطق يركز على الحجز",
+    intel2Text: "موظف الاستقبال الذكي يحرك المريض خطوة بخطوة: الخدمة → اليوم → الوقت → الاسم → الهاتف → التأكيد.",
+    intel3Title: "جاهز لعدة لغات",
+    intel3Text: "الموقع متاح بالإنجليزية والعربية والتركية، ودعم لغات النظام يمكن توسيعه حسب احتياج العيادة.",
 
-    howTitle: "كيف يعمل ConveXa",
-    howDesc:
-      "يقود المحادثات، يجمع تفاصيل الحجز، ويحوّل رسائل واتساب إلى طلبات منظمة يمكن للعيادة التعامل معها مباشرة.",
+    trustLabel: "الثقة",
+    trustTitle: "مصمم لبيئة العيادات الحقيقية.",
+    trust1Title: "يرد خلال ثوانٍ",
+    trust1Text: "رد سريع عندما يكون المريض ما زال مهتماً.",
+    trust2Title: "مبني على سير عمل واقعي",
+    trust2Text: "أسئلة، خدمات، توقيت، بيانات تواصل، وتحويل للفريق.",
+    trust3Title: "محادثات عالية التحويل",
+    trust3Text: "منظمة لدفع المرضى نحو حجز موعد.",
+    trust4Title: "الموقع بثلاث لغات",
+    trust4Text: "تجربة عربية وإنجليزية وتركية لأصحاب العيادات.",
 
-    step1Title: "الرد",
-    step1Desc:
-      "الرد على أسئلة المرضى المتكررة فورًا عبر واتساب بصياغة واضحة ومفيدة.",
+    whoLabel: "لمن هذا النظام",
+    whoTitle: "مصمم للعيادات التي يمكن أن يتحول فيها كل استفسار إلى إيراد.",
+    who1Title: "عيادات التجميل",
+    who1Text: "بوتوكس، فيلر، علاجات البشرة، وطلبات الاستشارة.",
+    who2Title: "عيادات الأسنان",
+    who2Text: "زراعة، فينير، تبييض، تصميم ابتسامة، واستشارات.",
+    who3Title: "عيادات السياحة العلاجية",
+    who3Text: "نوع العلاج، موعد السفر، اللغة، وطلبات مؤهلة.",
 
-    step2Title: "التوجيه",
-    step2Desc:
-      "توجيه المرضى خلال الخدمات وتوضيح الأسعار وساعات العمل بشكل طبيعي ومنظم.",
+    pricingLabel: "الأسعار",
+    pricingTitle: "ابدأ ببساطة، وطور عندما تحتاج عيادتك إلى ذكاء أكبر.",
+    basicPlan: "Basic",
+    basicText: "للعيادات التي تريد أتمتة واتساب بسرعة وبدون تعقيد.",
+    basic1: "ردود تلقائية",
+    basic2: "إجابات للأسئلة الشائعة",
+    basic3: "مسار حجز أساسي",
+    basic4: "إعداد جاهز لواتساب",
+    startBasic: "ابدأ Basic",
+    popular: "⭐ معظم العيادات تختار هذه الخطة",
+    proPlan: "Pro",
+    customQuote: "تسعير مخصص",
+    proText: "مصممة لتحويل المرضى فعلياً إلى حجوزات",
+    pro1: "محادثات ذكية مع المرضى",
+    pro2: "سيناريوهات حجز متقدمة",
+    pro3: "مسارات حسب الخدمة",
+    pro4: "منطق تأهيل المرضى",
+    pro5: "مسارات تحويل أعلى",
+    pro6: "تحمل حجم رسائل عالي",
+    discussPro: "ناقش خطة Pro",
+    customPlan: "Custom",
+    tailored: "مخصص",
+    customText: "للعيادات ذات الفروع المتعددة أو المسارات الخاصة.",
+    custom1: "مسار نظام مخصص بالكامل",
+    custom2: "هيكل متعدد اللغات",
+    custom3: "قواعد تحويل مخصصة",
+    custom4: "جاهز للتكاملات",
+    buildCustom: "ابنِ نظاماً مخصصاً",
 
-    step3Title: "الجمع",
-    step3Desc:
-      "جمع تفاصيل الحجز مثل الخدمة واليوم والوقت المناسبين وبيانات المريض.",
+    leadLabel: "ابدأ الآن",
+    leadTitle: "جهّز عيادتك",
+    leadText: "أرسل بيانات عيادتك وسنساعدك في إعداد نظام حجز واتساب.",
+    clinicName: "اسم العيادة",
+    country: "الدولة",
+    whatsapp: "واتساب",
+    submitLead: "إرسال",
 
-    step4Title: "التسليم",
-    step4Desc:
-      "تحويل المحادثة إلى طلب حجز منظم جاهز للتأكيد والمتابعة من قبل العيادة.",
+    faqLabel: "الأسئلة الشائعة",
+    faqTitle: "أسئلة تسألها العيادات قبل البدء.",
+    faq1Q: "هل يعمل مع WhatsApp Business؟",
+    faq1A: "نعم. ConveXa مبني حول سير عمل العيادات على واتساب.",
+    faq2Q: "هل يمكنني تخصيص المسارات؟",
+    faq2A: "نعم. يمكن تخصيص المسارات حسب الخدمة، نوع العيادة، اللغة، وطريقة الحجز.",
+    faq3Q: "ماذا لو سأل المريض سؤالاً معقداً؟",
+    faq3A: "يمكن تحويل الحالات المعقدة إلى فريقك مع كل سياق المريض المجموع مسبقاً.",
+    faq4Q: "كم يستغرق الإعداد؟",
+    faq4A: "يعتمد الإعداد على خدماتك ومساراتك، لكن النظام مصمم للانطلاق بسرعة.",
+    faq5Q: "هل يدعم عدة لغات؟",
+    faq5A: "نعم. الموقع يدعم الإنجليزية والعربية والتركية، ويمكن توسيع مسارات المرضى حسب حاجة العيادة.",
 
-    demoTitle: "جرّب الديمو التفاعلي",
-    demoDesc:
-      "اختبر كيف يتعامل ConveXa مع أسئلة المرضى، ويوجه المحادثة، ويجهز طلبات الحجز مباشرة من رسائل بأسلوب واتساب.",
-    demoCta: "افتح الديمو التفاعلي",
-
-    demoMsg1: "ما هي ساعات عمل العيادة؟",
-    demoMsg2:
-      "نعمل من الاثنين إلى الجمعة من 09:00 إلى 18:00. هل ترغب في حجز موعد أم الاطلاع على الخدمات المتاحة؟",
-    demoMsg3: "حجز موعد",
-
-    pricingTitle: "الأسعار",
-    pricingDesc:
-      "خيارات مرنة حسب احتياجات عيادتك وطريقة الإعداد التي تناسبك.",
-
-    plan1Title: "Starter",
-    plan1Price: "$149+",
-    plan1Desc:
-      "إعداد أساسي لمساعد ذكي للعيادات التي تبدأ بأتمتة واتساب.",
-    plan1Cta: "تواصل عبر واتساب",
-
-    featuredLabel: "الأكثر طلبًا",
-    plan2Title: "Guided Setup",
-    plan2Price: "تحدث معنا",
-    plan2Desc:
-      "نقوم بإعداد المساعد وفق خدماتك، وتوجيه الأسعار، ومسارات الحجز الخاصة بعيادتك.",
-    plan2Cta: "ابدأ الإعداد",
-
-    plan3Title: "Custom",
-    plan3Price: "مخصص",
-    plan3Desc:
-      "للعيادات التي تحتاج إلى تكاملات أعمق أو تدفقات عمل مخصصة.",
-    plan3Cta: "تواصل معنا",
-
-    finalTitle: "شاهد كيف ينظم ConveXa محادثات واتساب في عيادتك",
-    finalDesc:
-      "جرّب الديمو لترى كيف تتحول رسائل المرضى إلى طلبات حجز منظمة وجاهزة للمتابعة.",
-    finalPrimary: "افتح الديمو",
-    finalSecondary: "تواصل عبر واتساب",
-
-    footerBrand: "ConveXa",
-    footerDesc:
-      "مساعد ذكي مصمم للعيادات لإدارة محادثات واتساب، وتوجيه المرضى، وتجهيز طلبات حجز منظمة."
+    startWithConvexa: "ابدأ مع ConveXa",
+    finalTitle: "مريضك القادم يراسلك الآن.",
+    finalText: "السؤال الوحيد هو: من يرد أولاً؟",
+    continueWhatsapp: "ابدأ مع ConveXa"
   },
 
   tr: {
-    pageTitle: "ConveXa — Klinikler için AI WhatsApp Asistanı",
-    htmlLang: "tr",
-    dir: "ltr",
+    navProblems: "Sorunlar",
+    navSolution: "Çözüm",
+    navPricing: "Fiyatlar",
+    navDemo: "Demo",
+    eyebrow: "Yoğun estetik, diş ve medikal turizm klinikleri için tasarlandı",
+    heroTitle: "WhatsApp mesajlarını randevulu hastalara dönüştürün — başka kliniğe gitmeden önce.",
+    heroSubtitle: "Çoğu klinik geç yanıt verdiği için hasta kaybeder. ConveXa anında yanıt verir, hastaları nitelendirir ve randevuya yönlendirir.",
+    tryDemo: "Kliniklerin mesajları randevuya nasıl çevirdiğini gör",
+    talkWhatsapp: "Kliniğinizi kurdurun",
+    trustResponse: "yanıt hissi",
+    trustIntake: "hasta kabulü",
+    trustReady: "Kliniklere hazır",
+    trustLanguages: "hasta akışları",
+    assistantName: "ConveXa AI Resepsiyonisti",
+    onlineNow: "şu an çevrimiçi",
+    chat1: "Merhaba 👋 Hangi tedaviyle ilgileniyorsunuz?",
+    chat2: "Diş implantı",
+    chat3: "Harika. Bu hafta danışmanlık ister misiniz?",
+    chat4: "Evet, tercihen yarın",
+    chat5: "2:00 ve 5:30 uygun. Hangisi sizin için iyi?",
+    float1Title: "Nitelikli aday",
+    float1Text: "Hizmet ve tercih edilen saat toplandı",
+    float2Title: "Randevu niyeti algılandı",
+    float2Text: "Hasta otomatik yönlendirildi",
 
-    navHow: "Nasıl çalışır",
-    navPricing: "Fiyatlandırma",
-    navDemo: "Demoyu Dene",
+    beforeAfterLabel: "Önce / Sonra",
+    beforeAfterTitle: "Hasta yolculuğundaki farkı görün.",
+    beforeAfterText: "ConveXa kaçırılan konuşmaları yapılandırılmış randevu taleplerine dönüştürür.",
+    beforeTitle: "ConveXa Öncesi",
+    before1: "Hasta soru sorar",
+    before2: "Klinik saatler sonra yanıt verir",
+    before3: "Hasta kaybolur",
+    afterTitle: "ConveXa Sonrası",
+    after1: "Anında yanıt",
+    after2: "Yönlendirilmiş konuşma",
+    after3: "Randevu talebi toplandı",
 
-    heroBadge: "Klinikler için AI WhatsApp Asistanı",
-    heroTitle: "WhatsApp konuşmalarını yapılandırılmış randevu taleplerine dönüştürün",
-    heroDesc:
-      "ConveXa, kliniklerin WhatsApp üzerinden gelen hasta mesajlarını daha akıllı şekilde yönetmesine yardımcı olur — soruları yanıtlar, konuşmayı yönlendirir ve randevu detaylarını net bir yapıda toplar.",
-    heroPrimary: "Demoyu Dene",
-    heroSecondary: "Nasıl çalışır",
+    problemLabel: "Sorun",
+    problemTitle: "Bir sonraki hastanız yanıt beklememeli.",
+    problemText: "WhatsApp yavaş ve dağınık olduğunda klinikler yüksek niyetli hastaları kaybeder. Her geciken yanıt kaybedilen bir hastadır. Hastalar beklemez, sonraki kliniğe yazar.",
+    problem1Title: "Yavaş yanıtlar",
+    problem1Text: "Hastalar hızlı karşılaştırır. Geciken yanıtlar sıcak fırsatları kayba çevirir.",
+    problem2Title: "Mesaj yoğunluğu",
+    problem2Text: "Ekibiniz aynı cevapları tekrar ederken önemli talepler kaybolur.",
+    problem3Title: "Mesai dışı kayıp",
+    problem3Text: "Gece ve hafta sonu mesajları çoğu zaman yanıtlanmadan kaybolur.",
+    problem4Title: "Düzensiz hasta alımı",
+    problem4Text: "Hizmet, tarih veya iletişim bilgileri eksikse takip yavaşlar.",
 
-    proof1: "WhatsApp uyumlu",
-    proof2: "Çok dilli",
-    proof3: "Yapılandırılmış randevu talepleri",
+    solutionLabel: "Çözüm",
+    solutionTitle: "Hastaları dönüştürmek için tasarlanmış WhatsApp AI resepsiyonisti.",
+    solutionText: "ConveXa basit bir otomatik yanıt değildir. Hastaları randevuya hazır olana kadar yapılandırılmış bir konuşmada yönlendiren hasta dönüşüm motorudur.",
+    step1Title: "Niyeti anlar",
+    step1Text: "Hastanın fiyat, hizmet, uygunluk veya randevu istediğini algılar.",
+    step2Title: "Takip soruları sorar",
+    step2Text: "Tedavi, tercih edilen gün, saat, isim ve telefon bilgisini toplar.",
+    step3Title: "Randevuya yönlendirir",
+    step3Text: "Dağınık konuşmaları düzenli randevu taleplerine dönüştürür.",
+    step4Title: "Gerektiğinde ekibe aktarır",
+    step4Text: "Karmaşık durumlar toplanan bağlamla ekibe aktarılabilir.",
 
-    clinicName: "BrightSmile Dental",
-    clinicRole: "Asistan",
-    chatPlaceholder: "Mesaj yazın...",
-    send: "Gönder",
+    proof1Title: "+3x daha hızlı yanıt",
+    proof1Text: "Hastalar hâlâ ilgiliyken cevap alır.",
+    proof2Title: "+2x daha fazla randevu talebi",
+    proof2Text: "Yapılandırılmış akışlar konuşmaları aksiyona taşır.",
+    proof3Title: "7/24 hasta yönetimi",
+    proof3Text: "Gece, hafta sonu ve yoğun saat talepleri ilerlemeye devam eder.",
 
-    heroMsg1: "Merhaba, diş beyazlatma hizmetiniz var mı?",
-    heroMsg2:
-      "Evet, var. Diş beyazlatma en çok talep edilen hizmetlerimizden biri. Bir danışmanlık randevusu almak ister misiniz, yoksa fiyat bilgisi mi görmek istersiniz?",
-    heroMsg3: "Randevu almak istiyorum.",
-    heroMsg4: "Harika. Hangi hizmet için randevu almak istersiniz?",
+    howLabel: "Nasıl çalışır",
+    howTitle: "Kliniğinizde nasıl çalışır.",
+    how1Title: "WhatsApp’ı bağlayın",
+    how1Text: "Hastalarınızın her gün kullandığı kanaldan başlayın.",
+    how2Title: "Hizmetlerinizi ayarlayın",
+    how2Text: "Tedaviler, fiyatlar, uygunluk ve aktarım kuralları etrafında akışlar oluşturun.",
+    how3Title: "Nitelikli randevu talepleri alın",
+    how3Text: "Ekibiniz hasta bilgileri toplanmış daha net talepler alır.",
 
-    bookingTitle: "Randevu Talebi",
-    summaryService: "Hizmet",
-    summaryDay: "Tercih Edilen Gün",
-    summaryTime: "Tercih Edilen Saat",
-    summaryName: "Hasta Adı",
-    summaryPhone: "Telefon",
-    summaryServiceValue: "Diş Beyazlatma",
-    summaryDayValue: "Salı",
-    summaryTimeValue: "15:00",
-    summaryNameValue: "Sarah Johnson",
-    summaryPhoneValue: "+31 684957550",
-    summaryStatus: "Klinik takibi için hazır",
+    intelLabel: "Hasta dönüşüm motoru",
+    intelTitle: "Sadece cevaplamak için değil, randevu almak için tasarlandı.",
+    intel1Title: "Hizmete özel konuşmalar",
+    intel1Text: "İmplant, beyazlatma, dolgu, saç ekimi danışmanlığı ve medikal turizm talepleri farklı akışlarla yönetilebilir.",
+    intel2Title: "Randevu odaklı mantık",
+    intel2Text: "AI resepsiyonist hastayı ilerletir: hizmet → gün → saat → isim → telefon → onay.",
+    intel3Title: "Çok dile hazır",
+    intel3Text: "Web sitesi İngilizce, Arapça ve Türkçe sunulur; sistem dil desteği kliniğin ihtiyacına göre genişletilebilir.",
 
-    value1: "WhatsApp üzerinden anında hasta yanıtları",
-    value2: "Randevu detaylarını otomatik toplayın",
-    value3: "Ön büro mesaj yükünü azaltın",
-    value4: "Sohbetleri yapılandırılmış taleplere dönüştürün",
+    trustLabel: "Güven",
+    trustTitle: "Gerçek klinik ortamları için tasarlandı.",
+    trust1Title: "Saniyeler içinde yanıt",
+    trust1Text: "Hasta hâlâ ilgilenirken hızlı cevap verir.",
+    trust2Title: "Gerçek iş akışları",
+    trust2Text: "Sorular, hizmetler, zamanlama, iletişim ve ekibe aktarım.",
+    trust3Title: "Yüksek dönüşümlü konuşmalar",
+    trust3Text: "Hastaları randevuya yönlendirecek şekilde yapılandırılmıştır.",
+    trust4Title: "3 dilde web sitesi",
+    trust4Text: "Klinik sahipleri için İngilizce, Arapça ve Türkçe deneyim.",
 
-    howTitle: "ConveXa Nasıl Çalışır",
-    howDesc:
-      "Konuşmaları yönlendirin, randevu detaylarını toplayın ve WhatsApp mesajlarını kliniğinizin hemen işleyebileceği yapılandırılmış taleplere dönüştürün.",
+    whoLabel: "Kimler için",
+    whoTitle: "Her talebin gelire dönüşebileceği klinikler için tasarlandı.",
+    who1Title: "Estetik klinikleri",
+    who1Text: "Botoks, dolgu, cilt tedavileri ve danışmanlık talepleri.",
+    who2Title: "Diş klinikleri",
+    who2Text: "İmplant, veneer, beyazlatma, gülüş tasarımı ve danışmanlıklar.",
+    who3Title: "Medikal turizm klinikleri",
+    who3Text: "Tedavi ilgisi, seyahat zamanı, diller ve nitelikli talepler.",
 
-    step1Title: "Yanıtla",
-    step1Desc:
-      "Sık sorulan hasta sorularını WhatsApp üzerinden net ve faydalı şekilde anında yanıtlayın.",
+    pricingLabel: "Fiyatlandırma",
+    pricingTitle: "Basit başlayın. Kliniğiniz daha fazla zekaya ihtiyaç duyduğunda yükseltin.",
+    basicPlan: "Basic",
+    basicText: "Karmaşıklık olmadan hızlı WhatsApp otomasyonu isteyen klinikler için.",
+    basic1: "Otomatik yanıtlar",
+    basic2: "SSS yönetimi",
+    basic3: "Temel randevu akışı",
+    basic4: "WhatsApp hazır kurulum",
+    startBasic: "Basic ile başla",
+    popular: "⭐ Çoğu klinik bunu seçer",
+    proPlan: "Pro",
+    customQuote: "Özel teklif",
+    proText: "Hastaları gerçek randevulara dönüştürmek için tasarlandı",
+    pro1: "AI benzeri hasta konuşmaları",
+    pro2: "Gelişmiş randevu senaryoları",
+    pro3: "Hizmet bazlı akışlar",
+    pro4: "Hasta nitelendirme mantığı",
+    pro5: "Daha yüksek dönüşüm akışları",
+    pro6: "Yüksek mesaj hacmi yönetimi",
+    discussPro: "Pro planı konuş",
+    customPlan: "Custom",
+    tailored: "Özel",
+    customText: "Çok şubeli, özel akışlı veya özel hasta yolculukları olan klinikler için.",
+    custom1: "Tamamen özel sistem akışı",
+    custom2: "Çok dilli yapı",
+    custom3: "Özel aktarım kuralları",
+    custom4: "Entegrasyona hazır yapı",
+    buildCustom: "Özel sistem oluştur",
 
-    step2Title: "Yönlendir",
-    step2Desc:
-      "Hastaları hizmetler, fiyat bilgisi ve klinik bilgileri konusunda doğal biçimde yönlendirin.",
+    leadLabel: "Başlayın",
+    leadTitle: "Kliniğinizi kurdurun",
+    leadText: "Klinik bilgilerinizi gönderin, WhatsApp randevu sisteminizi kurmanıza yardımcı olalım.",
+    clinicName: "Klinik adı",
+    country: "Ülke",
+    whatsapp: "WhatsApp",
+    submitLead: "Gönder",
 
-    step3Title: "Topla",
-    step3Desc:
-      "Hizmet, tercih edilen gün, saat ve hasta bilgileri gibi randevu verilerini toplayın.",
+    faqLabel: "SSS",
+    faqTitle: "Kliniklerin başlamadan önce sorduğu sorular.",
+    faq1Q: "WhatsApp Business ile çalışır mı?",
+    faq1A: "Evet. ConveXa, WhatsApp öncelikli klinik iş akışları için tasarlanmıştır.",
+    faq2Q: "Akışları özelleştirebilir miyim?",
+    faq2A: "Evet. Akışlar hizmete, klinik türüne, dile ve randevu sürecine göre özelleştirilebilir.",
+    faq3Q: "Hasta karmaşık bir şey sorarsa ne olur?",
+    faq3A: "Karmaşık durumlar, hasta bağlamı toplanmış şekilde ekibinize aktarılabilir.",
+    faq4Q: "Kurulum ne kadar sürer?",
+    faq4A: "Kurulum hizmetlerinize ve akışlarınıza bağlıdır, ancak sistem hızlı başlamak için tasarlanmıştır.",
+    faq5Q: "Birden fazla dili destekler mi?",
+    faq5A: "Evet. Web sitesi İngilizce, Arapça ve Türkçeyi destekler; hasta akışları klinik ihtiyacına göre genişletilebilir.",
 
-    step4Title: "Teslim Et",
-    step4Desc:
-      "Konuşmayı, klinik onayı için hazır yapılandırılmış bir randevu talebine dönüştürün.",
-
-    demoTitle: "Etkileşimli demoyu deneyin",
-    demoDesc:
-      "ConveXa'nın hasta sorularını nasıl ele aldığını, konuşmayı nasıl yönlendirdiğini ve WhatsApp tarzı mesajlardan randevu talebi nasıl hazırladığını deneyimleyin.",
-    demoCta: "Etkileşimli Demoyu Aç",
-
-    demoMsg1: "Kliniğinizin çalışma saatleri nedir?",
-    demoMsg2:
-      "Pazartesi'den Cuma'ya 09:00 - 18:00 saatleri arasında açığız. Randevu almak ister misiniz yoksa hizmetlerimizi mi görmek istersiniz?",
-    demoMsg3: "Randevu al",
-
-    pricingTitle: "Fiyatlandırma",
-    pricingDesc:
-      "Kliniğinizin ihtiyaçlarına ve tercih ettiğiniz kurulum seviyesine göre esnek seçenekler.",
-
-    plan1Title: "Starter",
-    plan1Price: "$149+",
-    plan1Desc:
-      "WhatsApp otomasyonuna başlayan klinikler için temel AI asistan kurulumu.",
-    plan1Cta: "WhatsApp ile İletişim",
-
-    featuredLabel: "En Popüler",
-    plan2Title: "Guided Setup",
-    plan2Price: "Bizimle konuşun",
-    plan2Desc:
-      "Asistanı hizmetlerinize, fiyat yönlendirmelerinize ve randevu akışlarınıza göre yapılandırıyoruz.",
-    plan2Cta: "Kuruluma Başla",
-
-    plan3Title: "Custom",
-    plan3Price: "Özel",
-    plan3Desc:
-      "Daha derin entegrasyonlar veya özelleştirilmiş iş akışları isteyen klinikler için.",
-    plan3Cta: "Bize ulaşın",
-
-    finalTitle: "ConveXa'nın kliniğinizde WhatsApp konuşmalarını nasıl düzenlediğini görün",
-    finalDesc:
-      "Demoyu deneyin ve hasta mesajlarının nasıl yapılandırılmış randevu taleplerine dönüştüğünü görün.",
-    finalPrimary: "Demoyu Aç",
-    finalSecondary: "WhatsApp ile İletişim",
-
-    footerBrand: "ConveXa",
-    footerDesc:
-      "WhatsApp konuşmalarını yönetmek, hastaları yönlendirmek ve yapılandırılmış randevu talepleri hazırlamak için klinikler adına tasarlanmış AI asistan."
+    startWithConvexa: "ConveXa ile başla",
+    finalTitle: "Bir sonraki hastanız şu anda mesaj atıyor.",
+    finalText: "Tek soru şu: ilk kim yanıtlıyor?",
+    continueWhatsapp: "ConveXa ile başla"
   }
 };
 
-const dom = {
-  html: document.documentElement,
-  title: document.querySelector("title"),
+function setLanguage(lang) {
+  const dict = translations[lang] || translations.en;
 
-  navHow: document.querySelector('.nav-links a[href="#how"]'),
-  navPricing: document.querySelector('.nav-links a[href="#pricing"]'),
-  navDemo: document.querySelector(".nav-actions .btn-primary"),
+  document.documentElement.lang = lang;
+  document.body.classList.toggle("rtl", lang === "ar");
 
-  heroBadge: document.querySelector(".hero-badge"),
-  heroTitle: document.querySelector(".hero-title"),
-  heroDesc: document.querySelector(".hero-desc"),
-  heroPrimary: document.querySelector(".hero-cta .btn-primary"),
-  heroSecondary: document.querySelector(".hero-cta .btn-secondary"),
-
-  proofs: document.querySelectorAll(".proof-item"),
-
-  clinicName: document.querySelector(".clinic-name"),
-  clinicRole: document.querySelector(".clinic-role"),
-  chatInput: document.querySelector(".chat-input input"),
-  send: document.querySelector(".chat-input .send"),
-
-  heroMessages: document.querySelectorAll(".chat-messages .msg"),
-  heroMessagesContainer: document.querySelector(".chat-messages"),
-
-  summaryTitle: document.querySelector(".summary-title"),
-  summaryRows: document.querySelectorAll(".summary-row"),
-  summaryStatus: document.querySelector(".summary-status"),
-
-  valueItems: document.querySelectorAll(".value-item"),
-
-  howTitle: document.querySelector(".how .section-header h2"),
-  howDesc: document.querySelector(".how .section-header p"),
-  steps: document.querySelectorAll(".step-card"),
-
-  demoTitle: document.querySelector(".demo-text h2"),
-  demoDesc: document.querySelector(".demo-text p"),
-  demoCta: document.querySelector(".demo-text .btn-primary"),
-  demoMessages: document.querySelectorAll(".mini-chat .mini-msg"),
-
-  pricingTitle: document.querySelector(".pricing .section-header h2"),
-  pricingDesc: document.querySelector(".pricing .section-header p"),
-  priceCards: document.querySelectorAll(".price-card"),
-  featuredLabel: document.querySelector(".featured-label"),
-
-  finalTitle: document.querySelector(".final-cta h2"),
-  finalDesc: document.querySelector(".final-cta p"),
-  finalPrimary: document.querySelector(".cta-buttons .btn-primary"),
-  finalSecondary: document.querySelector(".cta-buttons .btn-whatsapp"),
-
-  footerBrand: document.querySelector(".footer-brand"),
-  footerDesc: document.querySelector(".footer-desc"),
-
-  langButtons: document.querySelectorAll(".lang")
-};
-
-function setText(node, value) {
-  if (node) node.textContent = value;
-}
-
-function getWhatsAppUrl() {
-  const text = encodeURIComponent(whatsappPresetMessage);
-  return `https://wa.me/${whatsappNumber}?text=${text}`;
-}
-
-function updateWhatsAppLinks() {
-  const links = document.querySelectorAll('a[href^="https://wa.me/"]');
-  const url = getWhatsAppUrl();
-
-  links.forEach((link) => {
-    link.setAttribute("href", url);
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-  });
-}
-
-function updateDemoLinks() {
-  const demoLinks = [
-    dom.navDemo,
-    dom.heroPrimary,
-    dom.demoCta,
-    dom.finalPrimary
-  ];
-
-  demoLinks.forEach((link) => {
-    if (!link) return;
-    link.setAttribute("href", "demo/index.html");
-  });
-}
-
-function applyLanguage(lang) {
-  const t = translations[lang];
-  if (!t) return;
-
-  appState.lang = lang;
-
-  dom.html.lang = t.htmlLang;
-  dom.html.dir = t.dir;
-  document.title = t.pageTitle;
-
-  setText(dom.navHow, t.navHow);
-  setText(dom.navPricing, t.navPricing);
-  setText(dom.navDemo, t.navDemo);
-
-  setText(dom.heroBadge, t.heroBadge);
-  setText(dom.heroTitle, t.heroTitle);
-  setText(dom.heroDesc, t.heroDesc);
-  setText(dom.heroPrimary, t.heroPrimary);
-  setText(dom.heroSecondary, t.heroSecondary);
-
-  if (dom.proofs[0]) updateProofItem(dom.proofs[0], t.proof1);
-  if (dom.proofs[1]) updateProofItem(dom.proofs[1], t.proof2);
-  if (dom.proofs[2]) updateProofItem(dom.proofs[2], t.proof3);
-
-  setText(dom.clinicName, t.clinicName);
-  setText(dom.clinicRole, t.clinicRole);
-
-  if (dom.chatInput) dom.chatInput.placeholder = t.chatPlaceholder;
-  setText(dom.send, t.send);
-
-  if (dom.heroMessages[0]) setText(dom.heroMessages[0], t.heroMsg1);
-  if (dom.heroMessages[1]) setText(dom.heroMessages[1], t.heroMsg2);
-  if (dom.heroMessages[2]) setText(dom.heroMessages[2], t.heroMsg3);
-  if (dom.heroMessages[3]) setText(dom.heroMessages[3], t.heroMsg4);
-
-  setText(dom.summaryTitle, t.bookingTitle);
-
-  if (dom.summaryRows[0]) updateSummaryRow(dom.summaryRows[0], t.summaryService, t.summaryServiceValue);
-  if (dom.summaryRows[1]) updateSummaryRow(dom.summaryRows[1], t.summaryDay, t.summaryDayValue);
-  if (dom.summaryRows[2]) updateSummaryRow(dom.summaryRows[2], t.summaryTime, t.summaryTimeValue);
-  if (dom.summaryRows[3]) updateSummaryRow(dom.summaryRows[3], t.summaryName, t.summaryNameValue);
-  if (dom.summaryRows[4]) updateSummaryRow(dom.summaryRows[4], t.summaryPhone, t.summaryPhoneValue);
-
-  setText(dom.summaryStatus, t.summaryStatus);
-
-  if (dom.valueItems[0]) setText(dom.valueItems[0], t.value1);
-  if (dom.valueItems[1]) setText(dom.valueItems[1], t.value2);
-  if (dom.valueItems[2]) setText(dom.valueItems[2], t.value3);
-  if (dom.valueItems[3]) setText(dom.valueItems[3], t.value4);
-
-  setText(dom.howTitle, t.howTitle);
-  setText(dom.howDesc, t.howDesc);
-
-  if (dom.steps[0]) updateStepCard(dom.steps[0], "1", t.step1Title, t.step1Desc);
-  if (dom.steps[1]) updateStepCard(dom.steps[1], "2", t.step2Title, t.step2Desc);
-  if (dom.steps[2]) updateStepCard(dom.steps[2], "3", t.step3Title, t.step3Desc);
-  if (dom.steps[3]) updateStepCard(dom.steps[3], "4", t.step4Title, t.step4Desc);
-
-  setText(dom.demoTitle, t.demoTitle);
-  setText(dom.demoDesc, t.demoDesc);
-  setText(dom.demoCta, t.demoCta);
-
-  if (dom.demoMessages[0]) setText(dom.demoMessages[0], t.demoMsg1);
-  if (dom.demoMessages[1]) setText(dom.demoMessages[1], t.demoMsg2);
-  if (dom.demoMessages[2]) setText(dom.demoMessages[2], t.demoMsg3);
-
-  setText(dom.pricingTitle, t.pricingTitle);
-  setText(dom.pricingDesc, t.pricingDesc);
-
-  if (dom.priceCards[0]) updatePriceCard(dom.priceCards[0], t.plan1Title, t.plan1Price, t.plan1Desc, t.plan1Cta);
-  if (dom.priceCards[1]) updatePriceCard(dom.priceCards[1], t.plan2Title, t.plan2Price, t.plan2Desc, t.plan2Cta, t.featuredLabel);
-  if (dom.priceCards[2]) updatePriceCard(dom.priceCards[2], t.plan3Title, t.plan3Price, t.plan3Desc, t.plan3Cta);
-
-  setText(dom.finalTitle, t.finalTitle);
-  setText(dom.finalDesc, t.finalDesc);
-  setText(dom.finalPrimary, t.finalPrimary);
-  setText(dom.finalSecondary, t.finalSecondary);
-
-  setText(dom.footerBrand, t.footerBrand);
-  setText(dom.footerDesc, t.footerDesc);
-
-  updateLanguageButtons(lang);
-  updateWhatsAppLinks();
-  updateDemoLinks();
-  restartHeroChatSimulation();
-
-  try {
-    localStorage.setItem("convexa_lang", lang);
-  } catch (error) {
-    // no-op
-  }
-}
-
-function ensureProofDot(item) {
-  if (!item) return null;
-
-  let dot = item.querySelector(".proof-dot");
-
-  if (!dot) {
-    dot = document.createElement("span");
-    dot.className = "proof-dot";
-    item.prepend(dot);
-  }
-
-  return dot;
-}
-
-function updateProofItem(item, text) {
-  if (!item) return;
-
-  ensureProofDot(item);
-
-  const nodes = Array.from(item.childNodes).filter((node) => {
-    return !(node.nodeType === Node.ELEMENT_NODE && node.classList.contains("proof-dot"));
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key]) el.textContent = dict[key];
   });
 
-  nodes.forEach((node) => item.removeChild(node));
-  item.append(document.createTextNode(text));
-}
-
-function updateSummaryRow(row, label, value) {
-  const span = row.querySelector("span");
-  const strong = row.querySelector("strong");
-  setText(span, label);
-  setText(strong, value);
-}
-
-function updateStepCard(card, number, title, description) {
-  const numberNode = card.querySelector(".step-number");
-  const titleNode = card.querySelector("h3");
-  const descNode = card.querySelector("p");
-
-  setText(numberNode, number);
-  setText(titleNode, title);
-  setText(descNode, description);
-}
-
-function updatePriceCard(card, title, price, description, cta, featuredLabelText) {
-  const titleNode = card.querySelector("h3");
-  const priceNode = card.querySelector(".price");
-  const descNode = card.querySelector("p");
-  const buttonNode = card.querySelector("a");
-  const badgeNode = card.querySelector(".featured-label");
-
-  setText(titleNode, title);
-  setText(priceNode, price);
-  setText(descNode, description);
-  setText(buttonNode, cta);
-
-  if (badgeNode && featuredLabelText) {
-    setText(badgeNode, featuredLabelText);
-  }
-}
-
-function updateLanguageButtons(activeLang) {
-  dom.langButtons.forEach((button) => {
-    const isActive = button.dataset.lang === activeLang;
-    button.classList.toggle("active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-}
-
-function setupLanguageSwitcher() {
-  dom.langButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const lang = button.dataset.lang;
-      applyLanguage(lang);
-    });
-  });
-}
-
-function setupSmoothSectionNavigation() {
-  const sectionLinks = document.querySelectorAll('a[href^="#"]');
-
-  sectionLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-      if (!targetId || targetId === "#") return;
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      event.preventDefault();
-
-      const navbar = document.querySelector(".navbar");
-      const navHeight = navbar ? navbar.offsetHeight : 0;
-      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 18;
-
-      window.scrollTo({
-        top,
-        behavior: "smooth"
-      });
-    });
-  });
-}
-
-function setupRevealAnimations() {
-  const revealTargets = document.querySelectorAll(
-    ".hero-left, .hero-right, .value-item, .step-card, .demo-inner, .price-card, .cta-inner, .footer-inner"
-  );
-
-  revealTargets.forEach((element, index) => {
-    element.style.opacity = "0";
-    element.style.transform = `${window.getComputedStyle(element).transform === "none" ? "" : ""} translateY(18px)`;
-    element.style.transition =
-      "opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1)";
-    element.dataset.revealIndex = String(index);
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    if (dict[key]) el.placeholder = dict[key];
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        const element = entry.target;
-        const staggerIndex = Number(element.dataset.revealIndex || 0) % 6;
-        const delay = staggerIndex * 70;
-
-        window.setTimeout(() => {
-          element.style.opacity = "1";
-          element.style.transform = "translateY(0)";
-        }, delay);
-
-        observer.unobserve(element);
-      });
-    },
-    {
-      threshold: 0.14,
-      rootMargin: "0px 0px -40px 0px"
-    }
-  );
-
-  revealTargets.forEach((element) => observer.observe(element));
-}
-
-function setupNavbarState() {
-  const navbar = document.querySelector(".nav-inner");
-  if (!navbar) return;
-
-  const handleScroll = () => {
-    if (window.scrollY > 12) {
-      navbar.style.boxShadow =
-        "0 20px 50px rgba(2, 8, 22, 0.32), inset 0 1px 0 rgba(255,255,255,0.05)";
-      navbar.style.borderColor = "rgba(126, 161, 255, 0.2)";
-    } else {
-      navbar.style.boxShadow =
-        "0 18px 44px rgba(2, 8, 22, 0.26), inset 0 1px 0 rgba(255,255,255,0.05)";
-      navbar.style.borderColor = "rgba(126, 161, 255, 0.16)";
-    }
-  };
-
-  handleScroll();
-  window.addEventListener("scroll", handleScroll, { passive: true });
-}
-
-function detectInitialLanguage() {
-  let savedLang = null;
-
-  try {
-    savedLang = localStorage.getItem("convexa_lang");
-  } catch (error) {
-    savedLang = null;
-  }
-
-  if (savedLang && translations[savedLang]) {
-    return savedLang;
-  }
-
-  const browserLang = (navigator.language || "en").toLowerCase();
-
-  if (browserLang.startsWith("ar")) return "ar";
-  if (browserLang.startsWith("tr")) return "tr";
-  return "en";
-}
-
-function clearHeroChatSimulation() {
-  appState.heroTypingTimeouts.forEach((timeoutId) => clearTimeout(timeoutId));
-  appState.heroTypingTimeouts = [];
-
-  if (appState.heroLoopTimeout) {
-    clearTimeout(appState.heroLoopTimeout);
-    appState.heroLoopTimeout = null;
-  }
-
-  removeHeroTypingIndicator();
-}
-
-function removeHeroTypingIndicator() {
-  const typing = dom.heroMessagesContainer?.querySelector(".hero-typing");
-  if (typing) typing.remove();
-}
-
-function createHeroTypingIndicator() {
-  const indicator = document.createElement("div");
-  indicator.className = "msg bot hero-typing";
-  indicator.setAttribute("aria-hidden", "true");
-  indicator.style.display = "inline-flex";
-  indicator.style.alignItems = "center";
-  indicator.style.gap = "6px";
-  indicator.style.minHeight = "46px";
-
-  for (let i = 0; i < 3; i += 1) {
-    const dot = document.createElement("span");
-    dot.style.width = "7px";
-    dot.style.height = "7px";
-    dot.style.borderRadius = "50%";
-    dot.style.background = "rgba(255,255,255,0.72)";
-    dot.style.display = "inline-block";
-    dot.style.opacity = "0.45";
-    dot.style.animation = `convexaTyping 1s ease-in-out ${i * 0.12}s infinite`;
-    indicator.appendChild(dot);
-  }
-
-  return indicator;
-}
-
-function ensureTypingKeyframes() {
-  if (document.getElementById("convexa-typing-style")) return;
-
-  const style = document.createElement("style");
-  style.id = "convexa-typing-style";
-  style.textContent = `
-    @keyframes convexaTyping {
-      0%, 80%, 100% { transform: translateY(0); opacity: 0.38; }
-      40% { transform: translateY(-3px); opacity: 1; }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-function setHeroMessagesInstant() {
-  const t = translations[appState.lang];
-  if (!t) return;
-
-  if (dom.heroMessages[0]) {
-    dom.heroMessages[0].style.opacity = "1";
-    dom.heroMessages[0].style.transform = "translateY(0)";
-    dom.heroMessages[0].textContent = t.heroMsg1;
-  }
-
-  if (dom.heroMessages[1]) {
-    dom.heroMessages[1].style.opacity = "1";
-    dom.heroMessages[1].style.transform = "translateY(0)";
-    dom.heroMessages[1].textContent = t.heroMsg2;
-  }
-
-  if (dom.heroMessages[2]) {
-    dom.heroMessages[2].style.opacity = "1";
-    dom.heroMessages[2].style.transform = "translateY(0)";
-    dom.heroMessages[2].textContent = t.heroMsg3;
-  }
-
-  if (dom.heroMessages[3]) {
-    dom.heroMessages[3].style.opacity = "1";
-    dom.heroMessages[3].style.transform = "translateY(0)";
-    dom.heroMessages[3].textContent = t.heroMsg4;
-  }
-}
-
-function prepareHeroMessagesForSimulation() {
-  dom.heroMessages.forEach((message, index) => {
-    if (!message) return;
-    message.style.transition = "opacity 320ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1)";
-    message.style.opacity = index === 0 ? "1" : "0";
-    message.style.transform = index === 0 ? "translateY(0)" : "translateY(10px)";
+  document.querySelectorAll(".lang-switch button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
   });
+
+  localStorage.setItem("convexaLang", lang);
 }
 
-function revealHeroMessage(index, text) {
-  const message = dom.heroMessages[index];
-  if (!message) return;
+document.querySelectorAll(".lang-switch button").forEach(btn => {
+  btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+});
 
-  message.textContent = text;
-  message.style.opacity = "1";
-  message.style.transform = "translateY(0)";
-}
-
-function runHeroChatSimulation() {
-  const t = translations[appState.lang];
-  if (!t || !dom.heroMessagesContainer || dom.heroMessages.length < 4) return;
-
-  clearHeroChatSimulation();
-  prepareHeroMessagesForSimulation();
-  setText(dom.heroMessages[0], t.heroMsg1);
-
-  const typingIndicator = createHeroTypingIndicator();
-
-  const step1 = setTimeout(() => {
-    dom.heroMessagesContainer.appendChild(typingIndicator);
-    dom.heroMessagesContainer.scrollTop = dom.heroMessagesContainer.scrollHeight;
-  }, 700);
-
-  const step2 = setTimeout(() => {
-    removeHeroTypingIndicator();
-    revealHeroMessage(1, t.heroMsg2);
-    dom.heroMessagesContainer.scrollTop = dom.heroMessagesContainer.scrollHeight;
-  }, 1600);
-
-  const step3 = setTimeout(() => {
-    revealHeroMessage(2, t.heroMsg3);
-    dom.heroMessagesContainer.scrollTop = dom.heroMessagesContainer.scrollHeight;
-  }, 2350);
-
-  const step4 = setTimeout(() => {
-    dom.heroMessagesContainer.appendChild(createHeroTypingIndicator());
-    dom.heroMessagesContainer.scrollTop = dom.heroMessagesContainer.scrollHeight;
-  }, 3050);
-
-  const step5 = setTimeout(() => {
-    removeHeroTypingIndicator();
-    revealHeroMessage(3, t.heroMsg4);
-    dom.heroMessagesContainer.scrollTop = dom.heroMessagesContainer.scrollHeight;
-  }, 4000);
-
-  const loop = setTimeout(() => {
-    runHeroChatSimulation();
-  }, 7200);
-
-  appState.heroTypingTimeouts.push(step1, step2, step3, step4, step5);
-  appState.heroLoopTimeout = loop;
-}
-
-function restartHeroChatSimulation() {
-  ensureTypingKeyframes();
-
-  if (!dom.heroMessagesContainer) return;
-
-  if (document.hidden) {
-    clearHeroChatSimulation();
-    setHeroMessagesInstant();
-    return;
-  }
-
-  runHeroChatSimulation();
-}
-
-function setupHeroChatSimulation() {
-  if (appState.heroSimulationStarted) return;
-  appState.heroSimulationStarted = true;
-
-  restartHeroChatSimulation();
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      clearHeroChatSimulation();
-      setHeroMessagesInstant();
-      return;
-    }
-
-    restartHeroChatSimulation();
-  });
-}
-
-function init() {
-  setupLanguageSwitcher();
-  setupSmoothSectionNavigation();
-  setupRevealAnimations();
-  setupNavbarState();
-  updateDemoLinks();
-  updateWhatsAppLinks();
-  applyLanguage(detectInitialLanguage());
-  setupHeroChatSimulation();
-}
-
-document.addEventListener("DOMContentLoaded", init);
+setLanguage(localStorage.getItem("convexaLang") || "en");
