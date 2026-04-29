@@ -10,7 +10,7 @@ const observer = new IntersectionObserver(
 );
 
 document
-  .querySelectorAll(".glass-card, .feature-card, .workflow-step, .price-card, .trust-grid div, .proof-box div, .faq-list details, .lead-form")
+  .querySelectorAll(".glass-card, .feature-card, .workflow-step, .price-card, .trust-grid div, .proof-box div, .faq-list details, .lead-form, .launch-offer, .pricing-note, .pricing-intro, .plan-ideal, .risk-remover, .roi-hint, .example-scenario")
   .forEach(el => {
     el.style.opacity = "0";
     el.style.transform = "translateY(18px)";
@@ -137,32 +137,62 @@ const translations = {
 
     pricingLabel: "Pricing",
     pricingTitle: "Start simple. Upgrade when your clinic needs more intelligence.",
+    pricingSubtitle: "Turn WhatsApp conversations into real booked patients — automatically.",
+    launchOffer: "Limited launch offer: setup fee waived for annual plans.",
+    pricingIntro: "Clinics using ConveXa typically respond faster and convert more WhatsApp inquiries into bookings.",
+    pricingNote: "Setup fee is paid once. Monthly fee covers hosting, maintenance, improvements, and support.",
+    riskRemover: "If you don’t see improvement in patient response and booking flow, we’ll optimize it for free.",
+
     basicPlan: "Basic",
-    basicText: "For clinics that want fast WhatsApp automation without complexity.",
-    basic1: "Automated replies",
+    basicPrice: "$149 <small>/ month</small>",
+    basicSetup: "$300 one-time setup",
+    basicText: "Stop losing ready-to-book patients — just because you replied late.",
+    basicIdeal: "Ideal for clinics with low message volume",
+    basic1: "Automated WhatsApp replies",
     basic2: "FAQ handling",
     basic3: "Basic booking flow",
-    basic4: "WhatsApp-ready setup",
-    startBasic: "Start Basic",
-    popular: "⭐ Most clinics choose this",
+    basic4: "Collect name, phone, service, preferred time",
+    basic5: "1 language",
+    basic6: "Up to 1 clinic branch",
+    basic7: "Basic support",
+    startBasic: "Get Started",
+
+    popular: "🔥 Best for growing clinics",
     proPlan: "Pro",
-    customQuote: "Custom quote",
-    proText: "Designed to actually convert patients into bookings",
-    pro1: "AI-like patient conversations",
-    pro2: "Advanced booking scenarios",
+    proPrice: "$499 <small>/ month</small>",
+    proSetup: "$1,000 one-time setup",
+    proText: "Turn daily WhatsApp inquiries into actual booked patients — automatically.",
+    proIdeal: "Ideal for clinics receiving daily inquiries",
+    proRoi: "Just 1–2 extra bookings per week can pay for this plan.",
+    pro1: "Everything in Basic",
+    pro2: "Advanced patient qualification",
     pro3: "Service-based flows",
-    pro4: "Patient qualification logic",
-    pro5: "Higher conversion flows",
-    pro6: "High message volume handling",
-    discussPro: "Discuss Pro Plan",
+    pro4: "Price inquiry handling",
+    pro5: "Booking-intent detection",
+    pro6: "Human handoff rules",
+    pro7: "Multi-language flow structure",
+    pro8: "Monthly optimization",
+    pro9: "Up to 3 clinic branches",
+    discussPro: "See How It Works",
+
     customPlan: "Custom",
-    tailored: "Tailored",
-    customText: "For clinics with multiple branches, custom flows, or special patient journeys.",
-    custom1: "Fully tailored system flow",
-    custom2: "Multi-language structure",
-    custom3: "Custom handoff rules",
-    custom4: "Integration-ready architecture",
+    customPrice: "Starting at $1,000 <small>/ month</small>",
+    customSetup: "Custom one-time setup",
+    customText: "Built for clinics where every missed message = lost revenue",
+    customIdeal: "Ideal for high-volume clinics & medical tourism",
+    custom1: "Fully custom automation system",
+    custom2: "Multi-branch workflows",
+    custom3: "Advanced integrations",
+    custom4: "CRM / Google Sheets / calendar connection",
+    custom5: "Custom reporting",
+    custom6: "Custom handoff logic",
+    custom7: "Priority support",
+    custom8: "Full patient journey design",
     buildCustom: "Build Custom System",
+
+    exampleLabel: "Example scenario",
+    exampleTitle: "Clinic receives 50+ messages/day",
+    exampleText: "AI handles them, qualifies patients, and organizes booking requests automatically.",
 
     leadLabel: "Get started",
     leadTitle: "Get your clinic setup",
@@ -188,7 +218,7 @@ const translations = {
     startWithConvexa: "Start with ConveXa",
     finalTitle: "Your next patient is already messaging you.",
     finalText: "The only question is: who replies first?",
-    continueWhatsapp: "Start with ConveXa"
+    continueWhatsapp: "Get your clinic set up in 24–48 hours"
   },
 
   ar: {
@@ -300,32 +330,62 @@ const translations = {
 
     pricingLabel: "الأسعار",
     pricingTitle: "ابدأ ببساطة، وطور عندما تحتاج عيادتك إلى ذكاء أكبر.",
+    pricingSubtitle: "حوّل محادثات واتساب إلى مرضى محجوزين فعلياً — تلقائياً.",
+    launchOffer: "عرض الإطلاق المحدود: إلغاء رسوم الإعداد عند الدفع السنوي.",
+    pricingIntro: "العيادات التي تستخدم ConveXa ترد أسرع عادةً وتحول المزيد من استفسارات واتساب إلى حجوزات.",
+    pricingNote: "رسوم الإعداد تُدفع مرة واحدة فقط. الاشتراك الشهري يشمل التشغيل، الصيانة، التحسينات، والدعم.",
+    riskRemover: "إذا لم تلاحظ تحسناً في سرعة الرد ومسار الحجز، سنقوم بتحسين النظام مجاناً.",
+
     basicPlan: "Basic",
-    basicText: "للعيادات التي تريد أتمتة واتساب بسرعة وبدون تعقيد.",
-    basic1: "ردود تلقائية",
-    basic2: "إجابات للأسئلة الشائعة",
+    basicPrice: "$149 <small>/ شهرياً</small>",
+    basicSetup: "$300 رسوم إعداد مرة واحدة",
+    basicText: "توقف عن خسارة المرضى الجاهزين للحجز فقط لأنك رددت متأخراً.",
+    basicIdeal: "مناسب للعيادات ذات حجم الرسائل المنخفض",
+    basic1: "ردود واتساب تلقائية",
+    basic2: "التعامل مع الأسئلة الشائعة",
     basic3: "مسار حجز أساسي",
-    basic4: "إعداد جاهز لواتساب",
-    startBasic: "ابدأ Basic",
-    popular: "⭐ معظم العيادات تختار هذه الخطة",
+    basic4: "جمع الاسم، الهاتف، الخدمة، والوقت المفضل",
+    basic5: "لغة واحدة",
+    basic6: "حتى فرع عيادة واحد",
+    basic7: "دعم أساسي",
+    startBasic: "ابدأ الآن",
+
+    popular: "🔥 الأفضل للعيادات النامية",
     proPlan: "Pro",
-    customQuote: "تسعير مخصص",
-    proText: "مصممة لتحويل المرضى فعلياً إلى حجوزات",
-    pro1: "محادثات ذكية مع المرضى",
-    pro2: "سيناريوهات حجز متقدمة",
+    proPrice: "$499 <small>/ شهرياً</small>",
+    proSetup: "$1,000 رسوم إعداد مرة واحدة",
+    proText: "حوّل استفسارات واتساب اليومية إلى مرضى محجوزين فعلياً — تلقائياً.",
+    proIdeal: "مناسب للعيادات التي تستقبل استفسارات يومية",
+    proRoi: "فقط حجز أو حجزان إضافيان أسبوعياً يمكن أن يدفعا تكلفة هذه الخطة.",
+    pro1: "كل ما في Basic",
+    pro2: "تأهيل متقدم للمرضى",
     pro3: "مسارات حسب الخدمة",
-    pro4: "منطق تأهيل المرضى",
-    pro5: "مسارات تحويل أعلى",
-    pro6: "تحمل حجم رسائل عالي",
-    discussPro: "ناقش خطة Pro",
+    pro4: "التعامل مع استفسارات الأسعار",
+    pro5: "اكتشاف نية الحجز",
+    pro6: "قواعد تحويل للبشر",
+    pro7: "هيكل مسارات متعدد اللغات",
+    pro8: "تحسين شهري",
+    pro9: "حتى 3 فروع للعيادة",
+    discussPro: "شاهد كيف يعمل",
+
     customPlan: "Custom",
-    tailored: "مخصص",
-    customText: "للعيادات ذات الفروع المتعددة أو المسارات الخاصة.",
-    custom1: "مسار نظام مخصص بالكامل",
-    custom2: "هيكل متعدد اللغات",
-    custom3: "قواعد تحويل مخصصة",
-    custom4: "جاهز للتكاملات",
+    customPrice: "يبدأ من $1,000 <small>/ شهرياً</small>",
+    customSetup: "رسوم إعداد مخصصة مرة واحدة",
+    customText: "مصمم للعيادات التي تعني فيها كل رسالة فائتة خسارة إيراد.",
+    customIdeal: "مناسب للعيادات عالية الطلب والسياحة العلاجية",
+    custom1: "نظام أتمتة مخصص بالكامل",
+    custom2: "مسارات عمل متعددة الفروع",
+    custom3: "تكاملات متقدمة",
+    custom4: "ربط CRM / Google Sheets / التقويم",
+    custom5: "تقارير مخصصة",
+    custom6: "منطق تحويل مخصص",
+    custom7: "دعم أولوية",
+    custom8: "تصميم كامل لرحلة المريض",
     buildCustom: "ابنِ نظاماً مخصصاً",
+
+    exampleLabel: "سيناريو مثال",
+    exampleTitle: "العيادة تستقبل أكثر من 50 رسالة يومياً",
+    exampleText: "الذكاء الاصطناعي يتعامل معها، يؤهل المرضى، وينظم طلبات الحجز تلقائياً.",
 
     leadLabel: "ابدأ الآن",
     leadTitle: "جهّز عيادتك",
@@ -351,7 +411,7 @@ const translations = {
     startWithConvexa: "ابدأ مع ConveXa",
     finalTitle: "مريضك القادم يراسلك الآن.",
     finalText: "السؤال الوحيد هو: من يرد أولاً؟",
-    continueWhatsapp: "ابدأ مع ConveXa"
+    continueWhatsapp: "جهّز عيادتك خلال 24–48 ساعة"
   },
 
   tr: {
@@ -463,32 +523,62 @@ const translations = {
 
     pricingLabel: "Fiyatlandırma",
     pricingTitle: "Basit başlayın. Kliniğiniz daha fazla zekaya ihtiyaç duyduğunda yükseltin.",
+    pricingSubtitle: "WhatsApp konuşmalarını gerçek randevulu hastalara otomatik olarak dönüştürün.",
+    launchOffer: "Sınırlı lansman teklifi: yıllık planlarda kurulum ücreti alınmaz.",
+    pricingIntro: "ConveXa kullanan klinikler genellikle daha hızlı yanıt verir ve daha fazla WhatsApp talebini randevuya dönüştürür.",
+    pricingNote: "Kurulum ücreti yalnızca bir kez ödenir. Aylık ücret barındırma, bakım, iyileştirmeler ve desteği kapsar.",
+    riskRemover: "Hasta yanıtı ve randevu akışında iyileşme görmezseniz, sistemi ücretsiz optimize ederiz.",
+
     basicPlan: "Basic",
-    basicText: "Karmaşıklık olmadan hızlı WhatsApp otomasyonu isteyen klinikler için.",
-    basic1: "Otomatik yanıtlar",
+    basicPrice: "$149 <small>/ ay</small>",
+    basicSetup: "$300 tek seferlik kurulum",
+    basicText: "Sırf geç yanıt verdiğiniz için randevuya hazır hastaları kaybetmeyi durdurun.",
+    basicIdeal: "Düşük mesaj hacmine sahip klinikler için ideal",
+    basic1: "Otomatik WhatsApp yanıtları",
     basic2: "SSS yönetimi",
     basic3: "Temel randevu akışı",
-    basic4: "WhatsApp hazır kurulum",
-    startBasic: "Basic ile başla",
-    popular: "⭐ Çoğu klinik bunu seçer",
+    basic4: "İsim, telefon, hizmet ve tercih edilen saat toplama",
+    basic5: "1 dil",
+    basic6: "En fazla 1 klinik şubesi",
+    basic7: "Temel destek",
+    startBasic: "Başlayın",
+
+    popular: "🔥 Büyüyen klinikler için en iyisi",
     proPlan: "Pro",
-    customQuote: "Özel teklif",
-    proText: "Hastaları gerçek randevulara dönüştürmek için tasarlandı",
-    pro1: "AI benzeri hasta konuşmaları",
-    pro2: "Gelişmiş randevu senaryoları",
+    proPrice: "$499 <small>/ ay</small>",
+    proSetup: "$1,000 tek seferlik kurulum",
+    proText: "Günlük WhatsApp taleplerini otomatik olarak gerçek randevulu hastalara dönüştürün.",
+    proIdeal: "Günlük talep alan klinikler için ideal",
+    proRoi: "Haftada sadece 1–2 ekstra randevu bu planın maliyetini karşılayabilir.",
+    pro1: "Basic içindeki her şey",
+    pro2: "Gelişmiş hasta nitelendirme",
     pro3: "Hizmet bazlı akışlar",
-    pro4: "Hasta nitelendirme mantığı",
-    pro5: "Daha yüksek dönüşüm akışları",
-    pro6: "Yüksek mesaj hacmi yönetimi",
-    discussPro: "Pro planı konuş",
+    pro4: "Fiyat sorgusu yönetimi",
+    pro5: "Randevu niyeti algılama",
+    pro6: "İnsan ekibe aktarım kuralları",
+    pro7: "Çok dilli akış yapısı",
+    pro8: "Aylık optimizasyon",
+    pro9: "En fazla 3 klinik şubesi",
+    discussPro: "Nasıl çalıştığını görün",
+
     customPlan: "Custom",
-    tailored: "Özel",
-    customText: "Çok şubeli, özel akışlı veya özel hasta yolculukları olan klinikler için.",
-    custom1: "Tamamen özel sistem akışı",
-    custom2: "Çok dilli yapı",
-    custom3: "Özel aktarım kuralları",
-    custom4: "Entegrasyona hazır yapı",
+    customPrice: "$1,000’dan başlayan <small>/ ay</small>",
+    customSetup: "Özel tek seferlik kurulum",
+    customText: "Her kaçırılan mesajın gelir kaybı anlamına geldiği klinikler için tasarlandı.",
+    customIdeal: "Yüksek hacimli klinikler ve medikal turizm için ideal",
+    custom1: "Tamamen özel otomasyon sistemi",
+    custom2: "Çok şubeli iş akışları",
+    custom3: "Gelişmiş entegrasyonlar",
+    custom4: "CRM / Google Sheets / takvim bağlantısı",
+    custom5: "Özel raporlama",
+    custom6: "Özel aktarım mantığı",
+    custom7: "Öncelikli destek",
+    custom8: "Tam hasta yolculuğu tasarımı",
     buildCustom: "Özel sistem oluştur",
+
+    exampleLabel: "Örnek senaryo",
+    exampleTitle: "Klinik günde 50+ mesaj alıyor",
+    exampleText: "AI mesajları yönetir, hastaları nitelendirir ve randevu taleplerini otomatik olarak düzenler.",
 
     leadLabel: "Başlayın",
     leadTitle: "Kliniğinizi kurdurun",
@@ -514,7 +604,7 @@ const translations = {
     startWithConvexa: "ConveXa ile başla",
     finalTitle: "Bir sonraki hastanız şu anda mesaj atıyor.",
     finalText: "Tek soru şu: ilk kim yanıtlıyor?",
-    continueWhatsapp: "ConveXa ile başla"
+    continueWhatsapp: "Kliniğinizi 24–48 saat içinde kurdurun"
   }
 };
 
@@ -526,7 +616,14 @@ function setLanguage(lang) {
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
-    if (dict[key]) el.textContent = dict[key];
+
+    if (dict[key]) {
+      if (key.includes("Price")) {
+        el.innerHTML = dict[key];
+      } else {
+        el.textContent = dict[key];
+      }
+    }
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
